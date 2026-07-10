@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-night text-cream antialiased;
+  }
+
+  /* Les ancres s'arrêtent sous le header sticky */
+  section[id] {
+    scroll-margin-top: 4.5rem;
+  }
+
+  ::selection {
+    @apply bg-ember text-night;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6;
+  }
+
+  .section-title {
+    @apply font-heading text-3xl font-extrabold uppercase tracking-tight text-cream sm:text-4xl;
+  }
+
+  .section-kicker {
+    @apply mb-3 inline-block bg-flame-gradient bg-clip-text text-sm font-bold uppercase tracking-[0.2em] text-transparent;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-base font-bold transition-transform duration-150 active:scale-95;
+  }
+
+  .btn-flame {
+    @apply btn bg-flame-gradient text-white shadow-glow hover:brightness-110;
+  }
+
+  .btn-outline {
+    @apply btn border-2 border-night-border bg-night-soft/60 text-cream hover:border-ember hover:text-ember;
+  }
+}
