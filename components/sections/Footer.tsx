@@ -1,5 +1,7 @@
+import Link from "next/link";
 import { site, hoursSummary } from "@/lib/data";
 import { FacebookIcon, PhoneIcon, PinIcon, ClockIcon } from "@/components/icons";
+import PhoneLink from "@/components/PhoneLink";
 
 export default function Footer() {
   return (
@@ -12,10 +14,10 @@ export default function Footer() {
               Chikano
             </h3>
             <p className="mt-2 text-sm text-bone/60">{site.tagline}</p>
-            <a href={site.phoneHref} className="btn-gold mt-5 w-full text-lg sm:w-auto">
+            <PhoneLink className="btn-gold mt-5 w-full text-lg sm:w-auto">
               <PhoneIcon className="h-5 w-5" />
               {site.phoneDisplay}
-            </a>
+            </PhoneLink>
             <p className="mt-3 text-xs text-bone/50">
               {site.services.join(" · ")}
             </p>
@@ -61,9 +63,19 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-slate-line/60 pt-6 text-center text-xs text-bone/40">
-          © {new Date().getFullYear()} {site.name} · {site.address.city} ({site.zip}).
-          Tous droits réservés.
+        <div className="mt-12 flex flex-col items-center gap-3 border-t border-slate-line/60 pt-6 text-center text-xs text-bone/40 sm:flex-row sm:justify-between">
+          <p>
+            © {new Date().getFullYear()} {site.name} · {site.address.city} ({site.zip}).
+            Tous droits réservés.
+          </p>
+          <nav className="flex items-center gap-4">
+            <Link href="/mentions-legales" className="hover:text-gold">
+              Mentions légales
+            </Link>
+            <Link href="/confidentialite" className="hover:text-gold">
+              Confidentialité
+            </Link>
+          </nav>
         </div>
       </div>
     </footer>

@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { site, photos } from "@/lib/data";
 import { PhoneIcon } from "@/components/icons";
 import Stars from "@/components/Stars";
+import PhoneLink from "@/components/PhoneLink";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 22 },
@@ -81,10 +82,10 @@ export default function Hero() {
             custom={4}
             className="mt-8 flex flex-col gap-3 sm:flex-row"
           >
-            <a href={site.phoneHref} className="btn-gold w-full sm:w-auto">
+            <PhoneLink className="btn-gold w-full sm:w-auto">
               <PhoneIcon className="h-5 w-5" />
               Appeler maintenant
-            </a>
+            </PhoneLink>
             <a href="#carte" className="btn-ghost w-full sm:w-auto">
               Voir la carte
             </a>

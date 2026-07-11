@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { site, areaServedDisplay, photos } from "@/lib/data";
 import { PinIcon, RouteIcon } from "@/components/icons";
+import MapEmbed from "@/components/MapEmbed";
 
 export default function Location() {
   return (
@@ -27,17 +28,9 @@ export default function Location() {
             />
           </div>
 
-          {/* Carte */}
+          {/* Carte (chargee au clic, sans cookie avant consentement) */}
           <div className="overflow-hidden rounded-2xl border border-slate-line/70">
-            <iframe
-              src={site.mapsEmbedUrl}
-              title={`Localisation de ${site.name}, ${site.address.full}`}
-              className="h-full min-h-[280px] w-full"
-              style={{ border: 0 }}
-              loading="lazy"
-              allowFullScreen
-              referrerPolicy="no-referrer-when-downgrade"
-            />
+            <MapEmbed />
           </div>
         </div>
 

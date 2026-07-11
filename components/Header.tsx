@@ -1,5 +1,6 @@
 import { site } from "@/lib/data";
 import { PhoneIcon } from "@/components/icons";
+import PhoneLink from "@/components/PhoneLink";
 
 const navLinks = [
   { href: "#carte", label: "La carte" },
@@ -35,14 +36,11 @@ export default function Header() {
           ))}
         </nav>
 
-        <a
-          href={site.phoneHref}
-          className="inline-flex items-center gap-2 rounded-md bg-gold px-4 py-2 text-sm font-bold uppercase tracking-wide text-ink transition-colors hover:bg-gold-bright"
-        >
+        <PhoneLink className="inline-flex items-center gap-2 rounded-md bg-gold px-4 py-2 text-sm font-bold uppercase tracking-wide text-ink transition-colors hover:bg-gold-bright">
           <PhoneIcon className="h-4 w-4" />
           <span className="hidden sm:inline">{site.phoneDisplay}</span>
           <span className="sm:hidden">Appeler</span>
-        </a>
+        </PhoneLink>
       </div>
     </header>
   );

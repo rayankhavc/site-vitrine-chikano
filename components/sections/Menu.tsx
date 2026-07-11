@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { menu, menus, viandes, sauces, site, photos } from "@/lib/data";
+import PhoneLink from "@/components/PhoneLink";
 
 export default function Menu() {
   return (
@@ -136,9 +137,9 @@ export default function Menu() {
 
         <p className="mt-10 text-center text-sm text-bone/60">
           Une envie, une question ? Appelez le{" "}
-          <a href={site.phoneHref} className="font-semibold text-gold hover:underline">
+          <PhoneLink className="font-semibold text-gold hover:underline">
             {site.phoneDisplay}
-          </a>{" "}
+          </PhoneLink>{" "}
           pour commander.
         </p>
       </div>

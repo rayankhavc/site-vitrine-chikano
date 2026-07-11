@@ -1,5 +1,6 @@
 import { openingHours, formatRange, hoursSummary, site } from "@/lib/data";
 import { ClockIcon, PhoneIcon } from "@/components/icons";
+import PhoneLink from "@/components/PhoneLink";
 
 export default function Hours() {
   return (
@@ -39,13 +40,10 @@ export default function Hours() {
 
         <p className="mx-auto mt-6 max-w-xl text-center text-sm text-bone/60">
           Un doute sur un créneau ? Appelez le{" "}
-          <a
-            href={site.phoneHref}
-            className="inline-flex items-center gap-1 font-semibold text-gold hover:underline"
-          >
+          <PhoneLink className="inline-flex items-center gap-1 font-semibold text-gold hover:underline">
             <PhoneIcon className="h-3.5 w-3.5" />
             {site.phoneDisplay}
-          </a>
+          </PhoneLink>
         </p>
       </div>
     </section>
