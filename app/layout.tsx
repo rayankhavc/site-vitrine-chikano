@@ -1,12 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Syne } from "next/font/google";
+import { Inter, Anton } from "next/font/google";
 import { site, reviews, openingHoursSchema, faq } from "@/lib/data";
 import "./globals.css";
 
-const syne = Syne({
+const anton = Anton({
   subsets: ["latin"],
-  weight: ["700", "800"],
-  variable: "--font-syne",
+  weight: "400",
+  variable: "--font-anton",
   display: "swap",
 });
 
@@ -17,25 +17,24 @@ const inter = Inter({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#0B0B0C",
+  themeColor: "#0E1216",
   colorScheme: "dark",
 };
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: "Chikano — Kebab, Tacos & Sandwichs à La Barre-de-Monts (85550)",
+  title: "Chikano · Kebab, Burger, Tacos & Panini à La Barre-de-Monts (85550)",
   description:
-    "Kebab, tacos et sandwichs faits maison à La Barre-de-Monts, Vendée (85550), près de Fromentine, Notre-Dame-de-Monts et Saint-Jean-de-Monts. Noté 4,9/5 sur Google. Ouvert dès 17h — 07 75 71 68 85.",
+    "Kebab, burgers, tacos et paninis faits maison à La Barre-de-Monts, Vendée (85550), près de Fromentine et Saint-Jean-de-Monts. Pain maison, viande 100% bœuf. Noté 4,9/5 sur Google, ouvert 7j/7. 07 75 71 68 85.",
   keywords: [
     "kebab La Barre-de-Monts",
-    "tacos kebab La Barre-de-Monts",
+    "burger La Barre-de-Monts",
+    "tacos La Barre-de-Monts",
     "Chikano La Barre-de-Monts",
     "restaurant snack Vendée 85550",
     "kebab 85550",
     "kebab Vendée",
-    "tacos 85550",
-    "snack La Barre-de-Monts",
-    "sandwich La Barre-de-Monts",
+    "fast food La Barre-de-Monts",
     "kebab Fromentine",
     "kebab Notre-Dame-de-Monts",
     "kebab Saint-Jean-de-Monts",
@@ -49,15 +48,15 @@ export const metadata: Metadata = {
     locale: "fr_FR",
     url: site.url,
     siteName: "Chikano",
-    title: "Chikano — Kebab, Tacos & Sandwichs à La Barre-de-Monts",
+    title: "Chikano · Kebab, Burger, Tacos & Panini à La Barre-de-Monts",
     description:
-      "Kebab, tacos et sandwichs maison à La Barre-de-Monts (85550), Vendée. 4,9/5 sur Google (18 avis). Ouvert dès 17h.",
+      "Street food maison à La Barre-de-Monts (85550), Vendée. Pain maison, viande 100% bœuf. 4,9/5 sur Google, ouvert 7j/7.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Chikano — Kebab, Tacos & Sandwichs à La Barre-de-Monts",
+    title: "Chikano · Kebab, Burger, Tacos & Panini à La Barre-de-Monts",
     description:
-      "Kebab, tacos et sandwichs maison à La Barre-de-Monts (85550). 4,9/5 sur Google. Appelez le 07 75 71 68 85.",
+      "Street food maison à La Barre-de-Monts (85550). Pain maison, 4,9/5 sur Google. Appelez le 07 75 71 68 85.",
   },
   robots: {
     index: true,
@@ -69,8 +68,6 @@ export const metadata: Metadata = {
     },
   },
   other: {
-    // Geo tags — signal de pertinence locale pour les moteurs et
-    // certains agrégateurs qui les lisent encore (Bing, annuaires).
     "geo.region": "FR-85",
     "geo.placename": "La Barre-de-Monts",
     "geo.position": `${site.geo.lat};${site.geo.lng}`,
@@ -78,17 +75,16 @@ export const metadata: Metadata = {
   },
 };
 
-// Schema.org LocalBusiness (Restaurant) — données structurées pour Google
 const restaurantJsonLd = {
   "@context": "https://schema.org",
   "@type": "Restaurant",
   "@id": `${site.url}/#restaurant`,
   name: site.name,
-  servesCuisine: ["Tacos", "Kebab", "Sandwichs", "Street food"],
+  servesCuisine: ["Kebab", "Burger", "Tacos", "Panini", "Sandwichs", "Street food"],
   url: site.url,
   image: `${site.url}/opengraph-image`,
   telephone: site.phoneE164,
-  priceRange: site.priceRange,
+  priceRange: "€€",
   address: {
     "@type": "PostalAddress",
     streetAddress: site.address.street,
@@ -102,10 +98,11 @@ const restaurantJsonLd = {
     latitude: site.geo.lat,
     longitude: site.geo.lng,
   },
-  areaServed: site.areaServed.map((name) => ({
-    "@type": "City",
-    name,
-  })),
+  areaServed: site.areaServed.map((name) => ({ "@type": "City", name })),
+  hasDeliveryMethod: [
+    "http://purl.org/goodrelations/v1#DeliveryModePickUp",
+    "http://purl.org/goodrelations/v1#DeliveryModeOwnFleet",
+  ],
   openingHoursSpecification: openingHoursSchema,
   aggregateRating: {
     "@type": "AggregateRating",
@@ -116,29 +113,20 @@ const restaurantJsonLd = {
   review: reviews.map((r) => ({
     "@type": "Review",
     author: { "@type": "Person", name: r.author },
-    reviewRating: {
-      "@type": "Rating",
-      ratingValue: r.rating,
-      bestRating: 5,
-    },
+    reviewRating: { "@type": "Rating", ratingValue: r.rating, bestRating: 5 },
     reviewBody: r.text,
   })),
   sameAs: [site.facebookUrl],
   hasMap: site.directionsUrl,
 };
 
-// FAQPage — reprend le contenu visible de la section #faq (voir
-// components/sections/Faq.tsx) pour rester éligible aux rich snippets.
 const faqJsonLd = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: faq.map((item) => ({
     "@type": "Question",
     name: item.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: item.answer,
-    },
+    acceptedAnswer: { "@type": "Answer", text: item.answer },
   })),
 };
 
@@ -146,7 +134,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="fr" className={`${syne.variable} ${inter.variable}`}>
+    <html lang="fr" className={`${anton.variable} ${inter.variable}`}>
       <body>
         <script
           type="application/ld+json"

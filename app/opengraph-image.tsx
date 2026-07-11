@@ -1,10 +1,9 @@
 import { ImageResponse } from "next/og";
 
-// Runtime edge requis : la génération statique de @vercel/og échoue sous
-// Windows (bug fileURLToPath) ; en edge la route est rendue à la demande.
+// Runtime edge : la generation statique de @vercel/og echoue sous Windows.
 export const runtime = "edge";
 export const alt =
-  "Chikano — Tacos, Kebab & Sandwichs à La Barre-de-Monts (85550)";
+  "Chikano · Kebab, Burger, Tacos & Panini à La Barre-de-Monts (85550)";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -19,31 +18,36 @@ export default function OpengraphImage() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background:
-            "radial-gradient(ellipse 80% 60% at 50% 120%, rgba(230,49,37,0.45), #0B0B0C 70%)",
-          backgroundColor: "#0B0B0C",
-          color: "#FAF5EF",
+          backgroundColor: "#161C22",
+          color: "#F4EEE2",
           fontFamily: "sans-serif",
         }}
       >
         <div
           style={{
-            fontSize: 130,
-            fontWeight: 900,
-            letterSpacing: -4,
-            textTransform: "uppercase",
-            background: "linear-gradient(100deg, #E63125, #FF8A00)",
-            backgroundClip: "text",
-            color: "transparent",
+            display: "flex",
+            border: "4px solid #E8B54A",
+            borderRadius: 18,
+            padding: "36px 60px",
           }}
         >
-          Chikano
+          <div
+            style={{
+              fontSize: 150,
+              fontWeight: 900,
+              letterSpacing: 4,
+              textTransform: "uppercase",
+              color: "#E8B54A",
+            }}
+          >
+            CHIKANO
+          </div>
         </div>
-        <div style={{ fontSize: 40, fontWeight: 700, marginTop: 10 }}>
-          Tacos · Kebabs · Sandwichs
+        <div style={{ fontSize: 38, fontWeight: 700, marginTop: 28 }}>
+          Kebab · Burger · Tacos · Panini
         </div>
-        <div style={{ fontSize: 30, marginTop: 24, color: "#FFB347" }}>
-          ★ 4,9/5 sur Google — La Barre-de-Monts (85550)
+        <div style={{ fontSize: 28, marginTop: 18, color: "#E8B54A" }}>
+          Pain maison · 4,9/5 sur Google · La Barre-de-Monts (85550)
         </div>
       </div>
     ),

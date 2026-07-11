@@ -1,7 +1,6 @@
 import { ImageResponse } from "next/og";
 
-// Icône d'écran d'accueil iOS/Android — même bug fileURLToPath que
-// opengraph-image.tsx sous Windows, donc runtime edge obligatoire.
+// Runtime edge : la generation statique de @vercel/og echoue sous Windows.
 export const runtime = "edge";
 export const size = { width: 180, height: 180 };
 export const contentType = "image/png";
@@ -16,17 +15,15 @@ export default function AppleIcon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "#0B0B0C",
+          backgroundColor: "#161C22",
         }}
       >
         <div
           style={{
-            fontSize: 110,
+            fontSize: 120,
             fontWeight: 900,
             fontFamily: "sans-serif",
-            background: "linear-gradient(100deg, #E63125, #FF8A00)",
-            backgroundClip: "text",
-            color: "transparent",
+            color: "#E8B54A",
           }}
         >
           C

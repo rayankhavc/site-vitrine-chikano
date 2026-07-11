@@ -1,6 +1,8 @@
 import Header from "@/components/Header";
+import Marquee from "@/components/Marquee";
 import Hero from "@/components/sections/Hero";
 import Menu from "@/components/sections/Menu";
+import Maison from "@/components/sections/Maison";
 import Reviews from "@/components/sections/Reviews";
 import Hours from "@/components/sections/Hours";
 import Location from "@/components/sections/Location";
@@ -13,7 +15,9 @@ export default function HomePage() {
       <Header />
       <main>
         <Hero />
+        <Marquee />
         <Menu />
+        <Maison />
         <Reviews />
         <Hours />
         <Location />

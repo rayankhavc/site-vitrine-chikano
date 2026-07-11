@@ -5,35 +5,35 @@ import { reviews, site } from "@/lib/data";
 import Stars from "@/components/Stars";
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 22 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, delay: i * 0.12, ease: "easeOut" },
+    transition: { duration: 0.5, delay: i * 0.1, ease: "easeOut" },
   }),
 };
 
 export default function Reviews() {
   return (
     <section id="avis" className="py-20">
-      <div className="container-page">
-        <div className="mb-12 text-center">
-          <p className="section-kicker">Ils ont goûté, ils ont adoré</p>
-          <h2 className="section-title">Avis clients</h2>
+      <div className="wrap">
+        <div className="mb-10 text-center">
+          <p className="kicker justify-center">Ils sont passés</p>
+          <h2 className="h-section">Avis clients</h2>
           <div className="mt-5 flex items-center justify-center gap-3">
-            <span className="font-heading text-4xl font-extrabold text-ember">
-              {site.rating.display}/5
+            <span className="font-display text-5xl text-gold">
+              {site.rating.display}
             </span>
-            <div>
+            <div className="text-left">
               <Stars className="h-5 w-5" />
-              <p className="mt-1 text-sm text-cream/60">
+              <p className="mt-1 text-sm text-bone/60">
                 {site.rating.count} avis Google
               </p>
             </div>
           </div>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-5 md:grid-cols-3">
           {reviews.map((review, i) => (
             <motion.figure
               key={review.author}
@@ -42,24 +42,26 @@ export default function Reviews() {
               whileInView="visible"
               viewport={{ once: true, margin: "-60px" }}
               custom={i}
-              className="flex flex-col rounded-2xl border border-night-border bg-night-card p-6 shadow-card"
+              className="plate flex flex-col p-6"
             >
               <Stars />
-              <blockquote className="mt-4 flex-1 text-cream/80">
-                “{review.text}”
+              <blockquote className="mt-4 flex-1 text-bone/80">
+                {review.text}
               </blockquote>
               <figcaption className="mt-5 flex items-center gap-3">
                 <span
                   aria-hidden="true"
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-flame-gradient font-heading font-bold text-white"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-gold font-display text-lg text-ink"
                 >
-                  {review.author.charAt(0)}
+                  {review.author.charAt(0).toUpperCase()}
                 </span>
                 <span>
-                  <span className="block font-semibold text-cream">
+                  <span className="block font-semibold text-bone">
                     {review.author}
                   </span>
-                  <span className="block text-xs text-cream/50">Avis Google · 5/5</span>
+                  <span className="block text-xs text-bone/50">
+                    Avis Google · 5/5
+                  </span>
                 </span>
               </figcaption>
             </motion.figure>
@@ -71,7 +73,7 @@ export default function Reviews() {
             href={site.googleReviewsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-outline"
+            className="btn-ghost"
           >
             Voir tous les avis sur Google
           </a>

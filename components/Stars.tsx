@@ -8,7 +8,7 @@ export default function Stars({
   className?: string;
 }) {
   return (
-    <div className="flex items-center gap-0.5 text-ember" aria-hidden="true">
+    <div className="stars-gold" aria-hidden="true">
       {Array.from({ length: count }).map((_, i) => (
         <StarIcon key={i} className={className} />
       ))}

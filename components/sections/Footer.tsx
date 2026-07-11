@@ -1,33 +1,33 @@
-import { site } from "@/lib/data";
+import { site, hoursSummary } from "@/lib/data";
 import { FacebookIcon, PhoneIcon, PinIcon, ClockIcon } from "@/components/icons";
 
 export default function Footer() {
   return (
-    <footer id="contact" className="border-t border-night-border/50 bg-night-soft">
-      <div className="container-page py-16">
+    <footer id="contact" className="border-t border-slate-line/60 bg-ink">
+      <div className="wrap py-16">
         <div className="grid gap-10 text-center sm:grid-cols-3 sm:text-left">
-          {/* Contact */}
+          {/* Marque + appel */}
           <div>
-            <h3 className="font-heading text-2xl font-extrabold uppercase">
-              Chik<span className="text-ember">a</span>no
+            <h3 className="font-display text-3xl uppercase tracking-widest text-gold">
+              Chikano
             </h3>
-            <p className="mt-2 text-sm text-cream/60">{site.tagline}</p>
-            <a
-              href={site.phoneHref}
-              className="btn-flame mt-5 w-full text-lg sm:w-auto"
-            >
+            <p className="mt-2 text-sm text-bone/60">{site.tagline}</p>
+            <a href={site.phoneHref} className="btn-gold mt-5 w-full text-lg sm:w-auto">
               <PhoneIcon className="h-5 w-5" />
               {site.phoneDisplay}
             </a>
+            <p className="mt-3 text-xs text-bone/50">
+              {site.services.join(" · ")}
+            </p>
           </div>
 
           {/* Adresse */}
           <div>
-            <h4 className="mb-3 flex items-center justify-center gap-2 font-heading text-sm font-bold uppercase tracking-widest text-cream/70 sm:justify-start">
-              <PinIcon className="h-4 w-4 text-ember" />
+            <h4 className="mb-3 flex items-center justify-center gap-2 font-display text-sm uppercase tracking-widest text-bone/70 sm:justify-start">
+              <PinIcon className="h-4 w-4 text-gold" />
               Adresse
             </h4>
-            <address className="not-italic leading-relaxed text-cream/80">
+            <address className="not-italic leading-relaxed text-bone/80">
               {site.address.street}
               <br />
               {site.address.zip} {site.address.city}
@@ -38,31 +38,31 @@ export default function Footer() {
               href={site.facebookUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-cream/70 transition-colors hover:text-ember"
+              className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-bone/70 transition-colors hover:text-gold"
             >
               <FacebookIcon className="h-4 w-4" />
               Suivez-nous sur Facebook
             </a>
           </div>
 
-          {/* Horaires résumés */}
+          {/* Horaires */}
           <div>
-            <h4 className="mb-3 flex items-center justify-center gap-2 font-heading text-sm font-bold uppercase tracking-widest text-cream/70 sm:justify-start">
-              <ClockIcon className="h-4 w-4 text-ember" />
+            <h4 className="mb-3 flex items-center justify-center gap-2 font-display text-sm uppercase tracking-widest text-bone/70 sm:justify-start">
+              <ClockIcon className="h-4 w-4 text-gold" />
               Horaires
             </h4>
-            <p className="leading-relaxed text-cream/80">
-              Ouvert dès 17h00
+            <p className="leading-relaxed text-bone/80">
+              Ouvert 7j/7
               <br />
-              <span className="text-sm text-cream/50">
-                Appelez-nous pour confirmer les horaires du jour.
-              </span>
+              11h00 à 23h00
+              <br />
+              <span className="text-sm text-bone/50">Vendredi dès 17h00</span>
             </p>
           </div>
         </div>
 
-        <div className="mt-12 border-t border-night-border/60 pt-6 text-center text-xs text-cream/40">
-          © {new Date().getFullYear()} {site.name} — {site.address.city} ({site.zip}).
+        <div className="mt-12 border-t border-slate-line/60 pt-6 text-center text-xs text-bone/40">
+          © {new Date().getFullYear()} {site.name} · {site.address.city} ({site.zip}).
           Tous droits réservés.
         </div>
       </div>

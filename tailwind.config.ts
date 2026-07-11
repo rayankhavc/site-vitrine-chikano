@@ -9,33 +9,42 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Palette Chikano — noir dominant, rouge & orange en accents (thème flyer)
-        night: {
-          DEFAULT: "#0B0B0C",
-          soft: "#141416",
-          card: "#1A1A1D",
-          border: "#2A2A2E",
+        // Palette reelle Chikano, relevee sur la devanture et les panneaux :
+        // ardoise charbon + dore signage + rouge accent.
+        ink: "#0E1216", // fond le plus profond
+        slate: {
+          DEFAULT: "#161C22", // panneau ardoise de la facade
+          soft: "#1D242C",
+          card: "#232C35",
+          line: "#333F4B",
         },
-        flame: {
-          DEFAULT: "#E63125", // rouge grill
-          dark: "#B7211A",
+        gold: {
+          DEFAULT: "#E8B54A", // dore des lettres "CHIKANO"
+          bright: "#F5C869",
+          deep: "#B8862B",
         },
-        ember: {
-          DEFAULT: "#FF8A00", // orange braise
-          soft: "#FFB347",
+        chili: {
+          DEFAULT: "#D63B2A", // rouge des bulles de prix du menu
+          deep: "#A82A1D",
         },
-        cream: "#FAF5EF",
+        bone: "#F4EEE2", // texte creme chaud
       },
       fontFamily: {
-        heading: ["var(--font-syne)", "system-ui", "sans-serif"],
+        display: ["var(--font-anton)", "Impact", "sans-serif"],
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
       },
-      backgroundImage: {
-        "flame-gradient": "linear-gradient(100deg, #E63125 0%, #FF8A00 100%)",
-      },
       boxShadow: {
-        glow: "0 0 40px -8px rgba(255, 138, 0, 0.45)",
-        card: "0 8px 30px rgba(0, 0, 0, 0.35)",
+        plate: "0 18px 40px -18px rgba(0,0,0,0.7)",
+        gold: "0 10px 30px -10px rgba(232,181,74,0.45)",
+      },
+      keyframes: {
+        marquee: {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-50%)" },
+        },
+      },
+      animation: {
+        marquee: "marquee 28s linear infinite",
       },
     },
   },
