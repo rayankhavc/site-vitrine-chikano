@@ -13,6 +13,14 @@ export default function Menu() {
             Prix par personne : <strong className="text-gold">{site.priceRange}</strong>.
             Burgers avec frites +1 €, avec frite et boisson +2,50 €.
           </p>
+          {(site.dietary.halal || site.dietary.vegetarian) && (
+            <p className="mx-auto mt-4 flex max-w-xl flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm font-semibold text-gold">
+              {site.dietary.halal && <span>🕌 Toutes nos viandes sont halal</span>}
+              {site.dietary.vegetarian && (
+                <span>🌱 Options végétariennes disponibles (falafel)</span>
+              )}
+            </p>
+          )}
         </div>
 
         {/* Formules mises en avant */}

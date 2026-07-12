@@ -24,18 +24,21 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: "Chikano · Kebab, Burger, Tacos & Panini à La Barre-de-Monts (85550)",
+  title: "Chikano · Kebab Halal, Burger, Tacos & Panini à La Barre-de-Monts (85550)",
   description:
-    "Kebab, burgers, tacos et paninis faits maison à La Barre-de-Monts, Vendée (85550), près de Fromentine et Saint-Jean-de-Monts. Pain maison, viande 100% bœuf. Noté 4,9/5 sur Google, ouvert 7j/7. 07 75 71 68 85.",
+    "Kebab halal, burgers, tacos et paninis faits maison à La Barre-de-Monts, Vendée (85550), près de Fromentine et Saint-Jean-de-Monts. Pain maison, viande 100% bœuf halal, options végétariennes disponibles. Convient à tous les régimes alimentaires. Noté 4,9/5 sur Google, ouvert 7j/7. 07 75 71 68 85.",
   keywords: [
+    "kebab halal La Barre-de-Monts",
     "kebab La Barre-de-Monts",
-    "burger La Barre-de-Monts",
+    "burger halal La Barre-de-Monts",
+    "restaurant halal Vendée 85",
     "tacos La Barre-de-Monts",
     "Chikano La Barre-de-Monts",
     "restaurant snack Vendée 85550",
     "kebab 85550",
-    "kebab Vendée",
-    "fast food La Barre-de-Monts",
+    "kebab halal Vendée",
+    "fast food halal La Barre-de-Monts",
+    "restaurant végétarien La Barre-de-Monts",
     "kebab Fromentine",
     "kebab Notre-Dame-de-Monts",
     "kebab Saint-Jean-de-Monts",
@@ -49,15 +52,15 @@ export const metadata: Metadata = {
     locale: "fr_FR",
     url: site.url,
     siteName: "Chikano",
-    title: "Chikano · Kebab, Burger, Tacos & Panini à La Barre-de-Monts",
+    title: "Chikano · Kebab Halal, Burger, Tacos & Panini à La Barre-de-Monts",
     description:
-      "Street food maison à La Barre-de-Monts (85550), Vendée. Pain maison, viande 100% bœuf. 4,9/5 sur Google, ouvert 7j/7.",
+      "Street food halal maison à La Barre-de-Monts (85550), Vendée. Pain maison, viande 100% bœuf halal, options végétariennes. 4,9/5 sur Google, ouvert 7j/7.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Chikano · Kebab, Burger, Tacos & Panini à La Barre-de-Monts",
+    title: "Chikano · Kebab Halal, Burger, Tacos & Panini à La Barre-de-Monts",
     description:
-      "Street food maison à La Barre-de-Monts (85550). Pain maison, 4,9/5 sur Google. Appelez le 07 75 71 68 85.",
+      "Street food halal maison à La Barre-de-Monts (85550). Pain maison, options végétariennes, 4,9/5 sur Google. Appelez le 07 75 71 68 85.",
   },
   robots: {
     index: true,
@@ -86,7 +89,9 @@ const restaurantJsonLd = {
   "@type": "Restaurant",
   "@id": `${site.url}/#restaurant`,
   name: site.name,
-  servesCuisine: ["Kebab", "Burger", "Tacos", "Panini", "Sandwichs", "Street food"],
+  description:
+    "Restaurant de street food halal à La Barre-de-Monts : kebab, burger, tacos, panini. Viandes 100% halal, options végétariennes disponibles.",
+  servesCuisine: ["Kebab", "Burger", "Tacos", "Panini", "Sandwichs", "Street food", "Halal"],
   url: site.url,
   image: `${site.url}/opengraph-image`,
   telephone: site.phoneE164,

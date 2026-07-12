@@ -27,11 +27,32 @@ export default function Hero() {
       <div className="wrap grid items-center gap-10 py-14 lg:grid-cols-[1.1fr_0.9fr] lg:py-20">
         {/* Colonne texte */}
         <div>
+          {(site.dietary.halal || site.dietary.vegetarian) && (
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              custom={0}
+              className="mb-4 flex flex-wrap gap-2"
+            >
+              {site.dietary.halal && (
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-gold px-3.5 py-1.5 text-sm font-bold uppercase tracking-wide text-ink shadow-gold">
+                  <span aria-hidden="true">🕌</span> 100% Halal
+                </span>
+              )}
+              {site.dietary.vegetarian && (
+                <span className="inline-flex items-center gap-1.5 rounded-full border-2 border-gold px-3.5 py-1.5 text-sm font-bold uppercase tracking-wide text-gold">
+                  <span aria-hidden="true">🌱</span> Options végé
+                </span>
+              )}
+            </motion.div>
+          )}
+
           <motion.p
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            custom={0}
+            custom={1}
             className="kicker"
           >
             <span className="h-px w-8 bg-gold" /> {site.city} · Vendée (85550)
@@ -41,7 +62,7 @@ export default function Hero() {
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            custom={1}
+            custom={2}
             className="font-display text-[clamp(3.2rem,13vw,7rem)] uppercase leading-[0.85] tracking-wide text-bone"
           >
             Chik<span className="text-gold">a</span>no
@@ -51,18 +72,19 @@ export default function Hero() {
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            custom={2}
+            custom={3}
             className="mt-5 max-w-md text-lg text-bone/75"
           >
             Le kebab, le burger et le tacos comme on les aime : généreux, faits à
             la commande, avec un <strong className="text-bone">pain maison</strong>.
+            Viandes halal, options végétariennes disponibles.
           </motion.p>
 
           <motion.div
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            custom={3}
+            custom={4}
             className="mt-6 flex flex-wrap gap-2"
           >
             {chips.map((chip) => (
@@ -79,7 +101,7 @@ export default function Hero() {
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            custom={4}
+            custom={5}
             className="mt-8 flex flex-col gap-3 sm:flex-row"
           >
             <PhoneLink className="btn-gold w-full sm:w-auto">
@@ -98,7 +120,7 @@ export default function Hero() {
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            custom={5}
+            custom={6}
             className="mt-6 inline-flex items-center gap-2 text-sm text-bone/70 transition-colors hover:text-gold"
           >
             <Stars />

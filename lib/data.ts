@@ -47,6 +47,12 @@ export const site = {
   // Services confirmes sur la fiche Google
   services: ["Sur place", "À emporter", "Livraison"],
 
+  // Regimes alimentaires acceptes
+  dietary: {
+    halal: true,
+    vegetarian: true,
+  },
+
   facebookUrl:
     "https://www.facebook.com/p/Chikano-La-Barre-De-Monts-61574288112446/",
 
@@ -382,8 +388,8 @@ export const faq: FaqItem[] = [
       "Oui, le pain des burgers et des sandwichs est préparé maison sur place, ce que les clients soulignent régulièrement dans leurs avis. La viande des burgers est hachée fraîche, 100% bœuf.",
   },
   {
-    question: "Chikano est-il proche de Saint-Jean-de-Monts et Notre-Dame-de-Monts ?",
+    question: "Chikano propose-t-il de la viande halal et des plats végétariens ?",
     answer:
-      "Oui, Chikano se trouve à La Barre-de-Monts en Vendée, à quelques minutes de Notre-Dame-de-Monts, Saint-Jean-de-Monts, Fromentine et de l'île de Noirmoutier.",
+      "Oui. Toutes les viandes servies chez Chikano sont halal, et des options végétariennes sont disponibles (falafel, salade végane). De quoi convenir à tous les régimes alimentaires.",
   },
 ];
