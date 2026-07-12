@@ -2,6 +2,7 @@
 
 import { useCallback, useState } from "react";
 import { site } from "@/lib/data";
+import { trackEvent } from "@/lib/gtag";
 
 /**
  * Lien telephone intelligent :
@@ -25,7 +26,10 @@ export default function PhoneLink({
         window.matchMedia("(hover: none), (pointer: coarse)").matches;
 
       // Sur un appareil tactile, on laisse tel: lancer l'appel.
-      if (isTouch || !navigator.clipboard) return;
+      if (isTouch || !navigator.clipboard) {
+        trackEvent("phone_click", { method: "call" });
+        return;
+      }
 
       // Sur ordinateur, tel: n'ouvre rien : on copie le numero a la place.
       e.preventDefault();
@@ -33,6 +37,7 @@ export default function PhoneLink({
         .writeText(site.phoneDisplay)
         .then(() => {
           setCopied(true);
+          trackEvent("phone_click", { method: "copy" });
           window.setTimeout(() => setCopied(false), 2400);
         })
         .catch(() => {});

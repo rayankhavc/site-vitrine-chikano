@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Anton } from "next/font/google";
 import { site, reviews, openingHoursSchema, faq } from "@/lib/data";
+import Analytics from "@/components/Analytics";
 import "./globals.css";
 
 const anton = Anton({
@@ -73,6 +74,11 @@ export const metadata: Metadata = {
     "geo.position": `${site.geo.lat};${site.geo.lng}`,
     ICBM: `${site.geo.lat}, ${site.geo.lng}`,
   },
+  // Renseigné via la variable d'environnement Vercel GOOGLE_SITE_VERIFICATION
+  // (copier le code fourni par Search Console lors de la vérification "balise HTML").
+  verification: process.env.GOOGLE_SITE_VERIFICATION
+    ? { google: process.env.GOOGLE_SITE_VERIFICATION }
+    : undefined,
 };
 
 const restaurantJsonLd = {
@@ -145,6 +151,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         />
         {children}
+        <Analytics />
       </body>
     </html>
   );
