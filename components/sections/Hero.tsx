@@ -27,57 +27,42 @@ export default function Hero() {
       <div className="wrap grid items-center gap-10 py-14 lg:grid-cols-[1.1fr_0.9fr] lg:py-20">
         {/* Colonne texte */}
         <div>
-          {(site.dietary.halal || site.dietary.vegetarian) && (
-            <motion.div
-              variants={fadeUp}
-              initial="hidden"
-              animate="visible"
-              custom={0}
-              className="mb-4 flex flex-wrap gap-2"
-            >
-              {site.dietary.halal && (
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-gold px-3.5 py-1.5 text-sm font-bold uppercase tracking-wide text-ink shadow-gold">
-                  <span aria-hidden="true">🕌</span> 100% Halal
-                </span>
-              )}
-              {site.dietary.vegetarian && (
-                <span className="inline-flex items-center gap-1.5 rounded-full border-2 border-gold px-3.5 py-1.5 text-sm font-bold uppercase tracking-wide text-gold">
-                  <span aria-hidden="true">🌱</span> Options végé
-                </span>
-              )}
-            </motion.div>
-          )}
-
           <motion.p
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            custom={1}
+            custom={0}
             className="kicker"
           >
             <span className="h-px w-8 bg-gold" /> {site.city} · Vendée (85550)
           </motion.p>
 
-          <motion.h1
+          <motion.div
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            custom={2}
-            className="font-display text-[clamp(3.2rem,13vw,7rem)] uppercase leading-[0.85] tracking-wide text-bone"
+            custom={1}
+            className="relative -ml-2 mt-2 h-[clamp(6.5rem,20vw,10rem)] w-[clamp(6.5rem,20vw,10rem)]"
           >
-            Chik<span className="text-gold">a</span>no
-          </motion.h1>
+            <Image
+              src={photos.logo}
+              alt="Chikano - Fast food & burger"
+              fill
+              priority
+              sizes="(max-width: 1024px) 30vw, 15vw"
+              className="object-contain"
+            />
+          </motion.div>
 
           <motion.p
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            custom={3}
+            custom={2}
             className="mt-5 max-w-md text-lg text-bone/75"
           >
             Le kebab, le burger et le tacos comme on les aime : généreux, faits à
             la commande, avec un <strong className="text-bone">pain maison</strong>.
-            Viandes halal, options végétariennes disponibles.
           </motion.p>
 
           <motion.div
@@ -140,8 +125,8 @@ export default function Hero() {
         >
           <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border-2 border-gold/40">
             <Image
-              src={photos.cheeseburger}
-              alt="Cheeseburger maison de Chikano avec frites"
+              src={photos.chikano1}
+              alt="Chikano - fast food & burger à La Barre-de-Monts"
               fill
               priority
               sizes="(max-width: 1024px) 90vw, 45vw"

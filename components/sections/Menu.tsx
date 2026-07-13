@@ -13,14 +13,37 @@ export default function Menu() {
             Prix par personne : <strong className="text-gold">{site.priceRange}</strong>.
             Burgers avec frites +1 €, avec frite et boisson +2,50 €.
           </p>
-          {(site.dietary.halal || site.dietary.vegetarian) && (
-            <p className="mx-auto mt-4 flex max-w-xl flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm font-semibold text-gold">
-              {site.dietary.halal && <span>🕌 Toutes nos viandes sont halal</span>}
-              {site.dietary.vegetarian && (
-                <span>🌱 Options végétariennes disponibles (falafel)</span>
-              )}
-            </p>
-          )}
+        </div>
+
+        {/* Carte complete en photos (panneaux reels du restaurant) */}
+        <div className="mb-14">
+          <h3 className="mb-5 text-center font-display text-2xl uppercase tracking-wide text-bone">
+            La carte complète en photos
+          </h3>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {photos.menuBoards.map((board) => (
+              <a
+                key={board.src}
+                href={board.src}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative block overflow-hidden rounded-xl border border-slate-line/70"
+              >
+                <div className="relative aspect-[16/9]">
+                  <Image
+                    src={board.src}
+                    alt={`Menu Chikano : ${board.label}`}
+                    fill
+                    sizes="(max-width: 640px) 100vw, 50vw"
+                    className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                  />
+                </div>
+                <span className="absolute bottom-0 left-0 right-0 bg-ink/80 px-3 py-2 text-sm font-semibold text-bone">
+                  {board.label}
+                </span>
+              </a>
+            ))}
+          </div>
         </div>
 
         {/* Formules mises en avant */}
@@ -109,37 +132,6 @@ export default function Menu() {
                 </span>
               ))}
             </div>
-          </div>
-        </div>
-
-        {/* Carte complete en photos (panneaux reels) */}
-        <div className="mt-14">
-          <h3 className="mb-5 text-center font-display text-2xl uppercase tracking-wide text-bone">
-            La carte complète en photos
-          </h3>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {photos.menuBoards.map((board) => (
-              <a
-                key={board.src}
-                href={board.src}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative block overflow-hidden rounded-xl border border-slate-line/70"
-              >
-                <div className="relative aspect-[16/9]">
-                  <Image
-                    src={board.src}
-                    alt={`Menu Chikano : ${board.label}`}
-                    fill
-                    sizes="(max-width: 640px) 100vw, 50vw"
-                    className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-                  />
-                </div>
-                <span className="absolute bottom-0 left-0 right-0 bg-ink/80 px-3 py-2 text-sm font-semibold text-bone">
-                  {board.label}
-                </span>
-              </a>
-            ))}
           </div>
         </div>
 

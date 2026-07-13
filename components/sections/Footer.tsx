@@ -77,6 +77,14 @@ export default function Footer() {
             </Link>
           </nav>
         </div>
+
+        {(site.dietary.halal || site.dietary.vegetarian) && (
+          <p className="mt-4 text-center text-[11px] text-bone/30">
+            {site.dietary.halal && "Viandes halal"}
+            {site.dietary.halal && site.dietary.vegetarian && " · "}
+            {site.dietary.vegetarian && "options végétariennes disponibles"}
+          </p>
+        )}
       </div>
     </footer>
   );

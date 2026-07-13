@@ -79,8 +79,10 @@ export const areaServedDisplay = site.areaServed
 
 // Photos reelles du restaurant (fiche Google) stockees en local
 export const photos = {
+  logo: "/photos/logo.jpg",
   facade: "/photos/facade.jpg",
   cheeseburger: "/photos/cheeseburger.jpg",
+  chikano1: "/photos/chikano-1.jpg",
   painBuns: "/photos/pain-maison-buns.jpg",
   painBaguettes: "/photos/pain-maison-baguettes.jpg",
   menuBoards: [
