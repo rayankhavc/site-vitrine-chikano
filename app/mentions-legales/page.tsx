@@ -32,9 +32,9 @@ export default function MentionsLegales() {
             <br />
             Statut / raison sociale : [À COMPLÉTER par le restaurant]
             <br />
-            SIRET : [À COMPLÉTER]
+            SIRET : 99347367700017
             <br />
-            Responsable de la publication : [À COMPLÉTER : nom du gérant]
+            Responsable de la publication : Adel YAHIAOUI
           </p>
         </section>
 
@@ -56,7 +56,7 @@ export default function MentionsLegales() {
             Conception
           </h2>
           <p className="mt-2 leading-relaxed">
-            Site conçu et développé par Raythan. Contact : [À COMPLÉTER : email].
+            Site conçu et développé par Raythan. Contact : raythanwebdesign@gmail.com.
           </p>
         </section>
 
