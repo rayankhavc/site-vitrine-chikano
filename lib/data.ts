@@ -15,7 +15,7 @@ export const site = {
   zip: "85550",
 
   // A remplacer par le vrai domaine au moment de la mise en ligne
-  url: "https://chikano-labarredemonts.fr",
+  url: "https://chikano.fr",
 
   phoneDisplay: "07 75 71 68 85",
   phoneHref: "tel:+33775716885",
@@ -67,7 +67,7 @@ export const site = {
   rating: {
     value: 4.9,
     display: "4,9",
-    count: 18,
+    count:,
   },
 
   priceRange: "1 à 10 €",
@@ -392,6 +392,6 @@ export const faq: FaqItem[] = [
   {
     question: "Chikano propose-t-il de la viande halal et des plats végétariens ?",
     answer:
-      "Oui. Toutes les viandes servies chez Chikano sont halal, et des options végétariennes sont disponibles (falafel, salade végane). De quoi convenir à tous les régimes alimentaires.",
+      "Oui. Les viandes servies chez Chikano sont halal, et des options végétariennes sont disponibles (falafel, salade végane). De quoi convenir à tous les régimes alimentaires.",
   },
 ];
