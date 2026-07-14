@@ -111,7 +111,7 @@ export default function Hero() {
             <Stars />
             <span>
               <strong className="text-gold">{site.rating.display}/5</strong> sur
-              Google · {site.rating.count} avis
+              Google
             </span>
           </motion.a>
         </div>

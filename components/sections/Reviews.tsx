@@ -26,9 +26,7 @@ export default function Reviews() {
             </span>
             <div className="text-left">
               <Stars className="h-5 w-5" />
-              <p className="mt-1 text-sm text-bone/60">
-                {site.rating.count} avis Google
-              </p>
+              <p className="mt-1 text-sm text-bone/60">Avis Google</p>
             </div>
           </div>
         </div>
