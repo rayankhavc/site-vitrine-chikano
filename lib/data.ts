@@ -45,7 +45,7 @@ export const site = {
   ],
 
   // Services confirmes sur la fiche Google
-  services: ["Sur place", "À emporter", "Livraison"],
+  services: ["Sur place", "À emporter"],
 
   // Regimes alimentaires acceptes
   dietary: {
@@ -380,9 +380,9 @@ export const faq: FaqItem[] = [
       "Chikano est ouvert 7j/7, de 11h00 à 23h00. Le vendredi, l'ouverture se fait à partir de 17h00.",
   },
   {
-    question: "Chikano fait-il de la livraison ?",
+    question: "Peut-on manger sur place ou à emporter chez Chikano ?",
     answer:
-      "Oui. Chikano propose le repas sur place, la vente à emporter et la livraison. Pour commander, appelez le 07 75 71 68 85.",
+      "Oui. Chikano propose le repas sur place et la vente à emporter. Pour commander, appelez le 07 75 71 68 85.",
   },
   {
     question: "Le pain est-il vraiment fait maison ?",

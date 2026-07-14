@@ -110,10 +110,7 @@ const restaurantJsonLd = {
     longitude: site.geo.lng,
   },
   areaServed: site.areaServed.map((name) => ({ "@type": "City", name })),
-  hasDeliveryMethod: [
-    "http://purl.org/goodrelations/v1#DeliveryModePickUp",
-    "http://purl.org/goodrelations/v1#DeliveryModeOwnFleet",
-  ],
+  hasDeliveryMethod: "http://purl.org/goodrelations/v1#DeliveryModePickUp",
   openingHoursSpecification: openingHoursSchema,
   aggregateRating: {
     "@type": "AggregateRating",
