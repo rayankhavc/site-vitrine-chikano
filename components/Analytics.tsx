@@ -1,11 +1,9 @@
 import Script from "next/script";
 
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+const GA_ID = "G-Q933CDS71R";
 
 /**
- * Google Analytics 4 (gtag.js). Ne charge rien tant que
- * NEXT_PUBLIC_GA_ID n'est pas defini dans les variables
- * d'environnement Vercel.
+ * Google Analytics 4 (gtag.js).
  */
 export default function Analytics() {
   if (!GA_ID) return null;
