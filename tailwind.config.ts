@@ -23,10 +23,6 @@ const config: Config = {
           bright: "#F5C869",
           deep: "#B8862B",
         },
-        chili: {
-          DEFAULT: "#D63B2A", // rouge des bulles de prix du menu
-          deep: "#A82A1D",
-        },
         bone: "#F4EEE2", // texte creme chaud
       },
       fontFamily: {
