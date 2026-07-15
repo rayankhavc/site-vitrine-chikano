@@ -24,7 +24,15 @@ export default function Hero() {
       id="accueil"
       className="relative overflow-hidden pt-16"
     >
-      <div className="wrap grid items-center gap-10 py-14 lg:grid-cols-[1.1fr_0.9fr] lg:py-20">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage:
+            "radial-gradient(ellipse 60% 40% at 15% 15%, rgba(214,59,42,0.20), transparent 60%), radial-gradient(ellipse 55% 45% at 90% 10%, rgba(232,121,42,0.16), transparent 60%), radial-gradient(ellipse 70% 45% at 50% 100%, rgba(232,181,74,0.14), transparent 60%)",
+        }}
+      />
+      <div className="wrap relative grid items-center gap-10 py-14 lg:grid-cols-[1.1fr_0.9fr] lg:py-20">
         {/* Colonne texte */}
         <div>
           <motion.p
@@ -34,7 +42,8 @@ export default function Hero() {
             custom={0}
             className="kicker"
           >
-            <span className="h-px w-8 bg-gold" /> {site.city} · Vendée (85550)
+            <span className="h-px w-8 bg-gradient-to-r from-chili via-ember to-gold" />{" "}
+            {site.city} · Vendée (85550)
           </motion.p>
 
           <motion.div

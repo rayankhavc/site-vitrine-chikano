@@ -23,6 +23,15 @@ const config: Config = {
           bright: "#F5C869",
           deep: "#B8862B",
         },
+        chili: {
+          DEFAULT: "#D63B2A", // rouge des flammes et bulles de prix des panneaux
+          bright: "#E5503D",
+          deep: "#A82A1D",
+        },
+        ember: {
+          DEFAULT: "#E8792A", // orange des panneaux menu / mascotte
+          bright: "#F2934C",
+        },
         bone: "#F4EEE2", // texte creme chaud
       },
       fontFamily: {

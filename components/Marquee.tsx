@@ -12,7 +12,7 @@ export default function Marquee({ items = DEFAULT_ITEMS }: { items?: string[] })
   // On duplique la liste pour un defilement continu (translateX -50%)
   const loop = [...items, ...items];
   return (
-    <div className="overflow-hidden border-y-2 border-ink bg-gold py-2.5 select-none">
+    <div className="overflow-hidden border-y-2 border-ink bg-gradient-to-r from-gold via-ember to-chili py-2.5 select-none">
       <div className="flex w-max animate-marquee">
         {loop.map((item, i) => (
           <span

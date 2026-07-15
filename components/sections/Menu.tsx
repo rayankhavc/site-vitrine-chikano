@@ -48,7 +48,7 @@ export default function Menu() {
 
         {/* Formules mises en avant */}
         <div className="mx-auto mb-12 grid max-w-3xl gap-4 sm:grid-cols-2">
-          {menus.map((m) => (
+          {menus.map((m, i) => (
             <div
               key={m.name}
               className="rounded-xl border-2 border-gold/50 bg-slate-card p-5 text-center ring-gold-soft"
@@ -57,7 +57,11 @@ export default function Menu() {
                 <h3 className="font-display text-2xl uppercase tracking-wide text-gold">
                   {m.name}
                 </h3>
-                <span className="price-pill text-base">{m.price}</span>
+                <span
+                  className={`price-pill text-base ${i % 2 === 0 ? "!bg-chili !text-bone" : "!bg-ember !text-ink"}`}
+                >
+                  {m.price}
+                </span>
               </div>
               <p className="mt-2 text-sm text-bone/70">{m.description}</p>
             </div>
