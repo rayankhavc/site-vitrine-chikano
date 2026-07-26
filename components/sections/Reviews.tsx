@@ -20,14 +20,9 @@ export default function Reviews() {
         <div className="mb-10 text-center">
           <p className="kicker justify-center">Ils sont passés</p>
           <h2 className="h-section">Avis clients</h2>
-          <div className="mt-5 flex items-center justify-center gap-3">
-            <span className="font-display text-5xl text-gold">
-              {site.rating.display}
-            </span>
-            <div className="text-left">
-              <Stars className="h-5 w-5" />
-              <p className="mt-1 text-sm text-bone/60">Avis Google</p>
-            </div>
+          <div className="mt-5 flex flex-col items-center justify-center gap-2">
+            <Stars className="h-6 w-6" />
+            <p className="text-sm text-bone/60">Avis clients Google</p>
           </div>
         </div>
 
@@ -58,7 +53,7 @@ export default function Reviews() {
                     {review.author}
                   </span>
                   <span className="block text-xs text-bone/50">
-                    Avis Google · 5/5
+                    Avis Google
                   </span>
                 </span>
               </figcaption>

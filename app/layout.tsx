@@ -112,12 +112,6 @@ const restaurantJsonLd = {
   areaServed: site.areaServed.map((name) => ({ "@type": "City", name })),
   hasDeliveryMethod: "http://purl.org/goodrelations/v1#DeliveryModePickUp",
   openingHoursSpecification: openingHoursSchema,
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: site.rating.value,
-    reviewCount: site.rating.count,
-    bestRating: 5,
-  },
   review: reviews.map((r) => ({
     "@type": "Review",
     author: { "@type": "Person", name: r.author },

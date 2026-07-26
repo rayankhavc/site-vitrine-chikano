@@ -118,10 +118,7 @@ export default function Hero() {
             className="mt-6 inline-flex items-center gap-2 text-sm text-bone/70 transition-colors hover:text-gold"
           >
             <Stars />
-            <span>
-              <strong className="text-gold">{site.rating.display}/5</strong> sur
-              Google
-            </span>
+            <span>Nos avis clients sur Google</span>
           </motion.a>
         </div>
 
@@ -144,11 +141,9 @@ export default function Hero() {
           </div>
           {/* Sticker note façon autocollant */}
           <div className="absolute -bottom-4 -left-4 -rotate-6 rounded-xl border-2 border-ink bg-gold px-4 py-2 text-center shadow-plate">
-            <span className="block font-display text-2xl leading-none text-ink">
-              {site.rating.display}/5
-            </span>
-            <span className="text-[11px] font-bold uppercase tracking-wide text-ink/80">
-              sur Google
+            <span className="block text-xl leading-none text-ink">★★★★★</span>
+            <span className="mt-1 block text-[11px] font-bold uppercase tracking-wide text-ink/80">
+              Avis Google
             </span>
           </div>
         </motion.div>
