@@ -64,11 +64,8 @@ export const site = {
   mapsEmbedUrl:
     "https://www.google.com/maps?q=2+Bis+Rte+du+Marais%2C+85550+La+Barre-de-Monts&output=embed",
 
-  rating: {
-    value: 4.9,
-    display: "4,9",
-    count: 18,
-  },
+  // Pas de note chiffree stockee ici : le score Google bouge, on affiche
+  // les avis sans le chiffrer (cf. commit "Retire les notes chiffrees").
 
   priceRange: "1 à 10 €",
 };

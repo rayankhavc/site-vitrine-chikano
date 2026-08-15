@@ -47,7 +47,7 @@ export default function OpengraphImage() {
           Kebab · Burger · Tacos · Panini
         </div>
         <div style={{ fontSize: 28, marginTop: 18, color: "#E8B54A" }}>
-          Pain maison · 4,9/5 sur Google · La Barre-de-Monts (85550)
+          Pain maison · Ouvert 7j/7 · La Barre-de-Monts (85550)
         </div>
       </div>
     ),

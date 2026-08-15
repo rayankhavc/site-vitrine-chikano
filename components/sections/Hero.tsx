@@ -46,22 +46,28 @@ export default function Hero() {
             {site.city} · Vendée (85550)
           </motion.p>
 
-          <motion.div
+          {/* Titre principal de la page : le logo porte le H1, le texte reel
+              est lu par Google et les lecteurs d'ecran via le span sr-only. */}
+          <motion.h1
             variants={fadeUp}
             initial="hidden"
             animate="visible"
             custom={1}
             className="relative -ml-2 mt-2 h-[clamp(6.5rem,20vw,10rem)] w-[clamp(6.5rem,20vw,10rem)]"
           >
+            <span className="sr-only">
+              Chikano · Kebab halal, burger, tacos et panini à{" "}
+              {site.city} (85550)
+            </span>
             <Image
               src={photos.logo}
-              alt="Chikano - Fast food & burger"
+              alt=""
               fill
               priority
               sizes="(max-width: 1024px) 30vw, 15vw"
               className="object-contain"
             />
-          </motion.div>
+          </motion.h1>
 
           <motion.p
             variants={fadeUp}
