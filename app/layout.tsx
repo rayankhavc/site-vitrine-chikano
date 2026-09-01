@@ -24,9 +24,13 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: "Chikano · Kebab Halal, Burger, Tacos & Panini à La Barre-de-Monts (85550)",
+  // Titre court volontairement : Google tronque au-dela de ~60 caracteres,
+  // un titre coupe fait chuter le taux de clic.
+  title: "Kebab Halal, Burger & Tacos à La Barre-de-Monts · Chikano",
+  // Description tenue sous ~160 caracteres pour s'afficher en entier dans les
+  // resultats, avec les arguments de clic en premier (note, pain maison, 7j/7).
   description:
-    "Kebab halal, burgers, tacos et paninis faits maison à La Barre-de-Monts, Vendée (85550), près de Fromentine et Saint-Jean-de-Monts. Pain maison, viande 100% bœuf halal, options végétariennes disponibles. Convient à tous les régimes alimentaires. Noté 4,9/5 sur Google, ouvert 7j/7. 07 75 71 68 85.",
+    "Kebab halal, burgers et tacos faits maison à La Barre-de-Monts (85550). Pain maison, viande 100% halal, options végé. 4,9/5 sur Google, ouvert 7j/7.",
   keywords: [
     "kebab halal La Barre-de-Monts",
     "kebab La Barre-de-Monts",

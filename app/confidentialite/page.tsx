@@ -5,8 +5,8 @@ import { site } from "@/lib/data";
 export const metadata: Metadata = {
   title: "Politique de confidentialité · Chikano",
   description:
-    "Politique de confidentialité et gestion des cookies du site Chikano, La Barre-de-Monts.",
-  robots: { index: false, follow: true },
+    "Politique de confidentialité et gestion des cookies du site Chikano, restaurant à La Barre-de-Monts (85550).",
+  alternates: { canonical: "/confidentialite" },
 };
 
 export default function Confidentialite() {
