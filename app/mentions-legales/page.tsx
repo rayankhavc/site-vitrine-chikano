@@ -4,8 +4,9 @@ import { site } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Mentions légales · Chikano",
-  description: "Mentions légales du site Chikano, La Barre-de-Monts (85550).",
-  robots: { index: false, follow: true },
+  description:
+    "Mentions légales du site Chikano : éditeur, hébergeur et responsable de publication du restaurant de La Barre-de-Monts (85550).",
+  alternates: { canonical: "/mentions-legales" },
 };
 
 export default function MentionsLegales() {
