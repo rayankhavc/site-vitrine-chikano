@@ -85,6 +85,20 @@ export default function Footer() {
             {site.dietary.vegetarian && "options végétariennes disponibles"}
           </p>
         )}
+
+        {/* Crédit agence. Lien suivi volontairement (rel sans nofollow) :
+            c'est un lien éditorial légitime entre le site livré et son auteur. */}
+        <p className="mt-4 text-center text-[11px] text-bone/40">
+          Site conçu et réalisé par{" "}
+          <a
+            href="https://raythan.fr"
+            target="_blank"
+            rel="noopener"
+            className="font-semibold text-bone/60 underline decoration-gold/40 underline-offset-2 transition-colors hover:text-gold"
+          >
+            Raythan Web Design
+          </a>
+        </p>
       </div>
     </footer>
   );
