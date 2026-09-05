@@ -1,0 +1,110 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { reviews, site } from "@/lib/data";
+import Stars from "@/components/Stars";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 22 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, delay: i * 0.1, ease: "easeOut" },
+  }),
+};
+
+export default function Reviews() {
+  return (
+    <section id="avis" className="py-20">
+      <div className="wrap">
+        <div className="mb-10 text-center">
+          <p className="kicker justify-center">Ils sont passés</p>
+          <h2 className="h-section">Avis clients</h2>
+          <div className="mt-5 flex flex-col items-center justify-center gap-2">
+            <Stars className="h-6 w-6" />
+            <p className="text-sm text-bone/60">Avis clients Google</p>
+          </div>
+        </div>
+
+        {reviews.length > 0 ? (
+          <div className="grid gap-5 md:grid-cols-3">
+            {reviews.map((review, i) => (
+              <motion.figure
+                key={review.author}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-60px" }}
+                custom={i}
+                className="plate flex flex-col p-6"
+              >
+                <Stars />
+                <blockquote className="mt-4 flex-1 text-bone/80">
+                  {review.text}
+                </blockquote>
+                <figcaption className="mt-5 flex items-center gap-3">
+                  <span
+                    aria-hidden="true"
+                    className="flex h-10 w-10 items-center justify-center rounded-full bg-red font-display text-lg text-bone"
+                  >
+                    {review.author.charAt(0).toUpperCase()}
+                  </span>
+                  <span>
+                    <span className="block font-semibold text-bone">
+                      {review.author}
+                    </span>
+                    <span className="block text-xs text-bone/50">
+                      Avis Google
+                    </span>
+                  </span>
+                </figcaption>
+              </motion.figure>
+            ))}
+          </div>
+        ) : (
+          /* Aucun avis n'est recopie sur le site tant que le restaurant ne les
+             a pas validés : on renvoie directement vers la fiche Google, qui
+             est de toute façon la source à jour. */
+          <div className="mx-auto max-w-2xl plate p-8 text-center">
+            <p className="text-lg text-bone/80">
+              Les clients d&apos;{site.name} laissent leurs avis directement sur
+              la fiche Google du restaurant. C&apos;est là que tout se passe, et
+              c&apos;est toujours à jour.
+            </p>
+            <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
+              <a
+                href={site.googleReviewsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-red"
+              >
+                Lire les avis Google
+              </a>
+              <a
+                href={site.writeReviewUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-ghost"
+              >
+                Laisser un avis
+              </a>
+            </div>
+          </div>
+        )}
+
+        {reviews.length > 0 ? (
+          <div className="mt-10 text-center">
+            <a
+              href={site.googleReviewsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-ghost"
+            >
+              Voir tous les avis sur Google
+            </a>
+          </div>
+        ) : null}
+      </div>
+    </section>
+  );
+}
