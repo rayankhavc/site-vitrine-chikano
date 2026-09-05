@@ -1,44 +1,67 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { site } from "@/lib/data";
 import { PhoneIcon } from "@/components/icons";
-import PhoneLink from "@/components/PhoneLink";
+import CallButton from "@/components/CallButton";
 import Wordmark from "@/components/Wordmark";
+import StatusPill from "@/components/StatusPill";
 
-const navLinks = [
+const nav = [
   { href: "#carte", label: "La carte" },
-  { href: "#maison", label: "La maison" },
-  { href: "#horaires", label: "Horaires" },
-  { href: "#localisation", label: "Nous trouver" },
-  { href: "#faq", label: "FAQ" },
+  { href: "#panneaux", label: "Les panneaux" },
+  { href: "#avis", label: "Avis" },
+  { href: "#infos", label: "Horaires & accès" },
 ];
 
 export default function Header() {
+  // Transparent au-dessus du hero, opaque dès qu'on défile : la barre ne
+  // masque pas le visuel d'entrée mais reste lisible ensuite.
+  const [solid, setSolid] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setSolid(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-coal-line/70 bg-ink/90 backdrop-blur-md">
-      <div className="wrap flex h-16 items-center justify-between gap-4">
-        <a href="#accueil" aria-label={`${site.name}, retour en haut de page`}>
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
+        solid
+          ? "border-b border-white/10 bg-ink/85 backdrop-blur-xl"
+          : "border-b border-transparent"
+      }`}
+    >
+      <div className="wrap flex h-[4.5rem] items-center justify-between gap-6">
+        <a href="#haut" aria-label={`${site.name}, haut de page`}>
           <Wordmark size="sm" />
         </a>
 
         <nav
-          className="hidden items-center gap-7 lg:flex"
+          className="hidden items-center gap-8 lg:flex"
           aria-label="Navigation principale"
         >
-          {navLinks.map((link) => (
+          {nav.map((l) => (
             <a
-              key={link.href}
-              href={link.href}
-              className="text-sm font-semibold uppercase tracking-wide text-bone/75 transition-colors hover:text-red"
+              key={l.href}
+              href={l.href}
+              className="text-sm text-bone/65 transition-colors hover:text-bone"
             >
-              {link.label}
+              {l.label}
             </a>
           ))}
         </nav>
 
-        <PhoneLink className="inline-flex shrink-0 items-center gap-2 rounded-md bg-red px-4 py-2 text-sm font-bold uppercase tracking-wide text-bone transition-colors hover:bg-red-bright">
-          <PhoneIcon className="h-4 w-4" />
-          <span className="hidden sm:inline">{site.phoneDisplay}</span>
-          <span className="sm:hidden">Appeler</span>
-        </PhoneLink>
+        <div className="flex items-center gap-3">
+          <StatusPill className="hidden md:inline-flex" />
+          <CallButton className="btn-brand !px-5 !py-2.5 !text-sm">
+            <PhoneIcon className="h-4 w-4" />
+            <span className="hidden sm:inline">{site.phoneDisplay}</span>
+            <span className="sm:hidden">Appeler</span>
+          </CallButton>
+        </div>
       </div>
     </header>
   );

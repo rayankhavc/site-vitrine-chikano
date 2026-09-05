@@ -1,34 +1,42 @@
 import Link from "next/link";
-import { site } from "@/lib/data";
-import { FacebookIcon, PhoneIcon, PinIcon, ClockIcon } from "@/components/icons";
-import PhoneLink from "@/components/PhoneLink";
+import { site, hoursSummary, hoursNote } from "@/lib/data";
+import { FacebookIcon, PhoneIcon, WhatsappIcon } from "@/components/icons";
+import CallButton from "@/components/CallButton";
 import Wordmark from "@/components/Wordmark";
 
 export default function Footer() {
   return (
-    <footer id="contact" className="border-t border-coal-line/60 bg-ink">
+    <footer id="contact" className="border-t border-char-line bg-ink">
       <div className="wrap py-16">
-        <div className="grid gap-10 text-center sm:grid-cols-3 sm:text-left">
-          {/* Marque + appel */}
-          <div>
-            <Wordmark className="justify-center sm:justify-start" />
-            <p className="mt-2 text-sm text-bone/60">{site.tagline}</p>
-            <PhoneLink className="btn-red mt-5 w-full text-lg sm:w-auto">
-              <PhoneIcon className="h-5 w-5" />
-              {site.phoneDisplay}
-            </PhoneLink>
-            <p className="mt-3 text-xs text-bone/50">
-              {site.services.join(" · ")}
+        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="lg:col-span-2">
+            <Wordmark size="lg" />
+            <p className="mt-4 max-w-xs text-[0.9375rem] leading-relaxed text-bone/50">
+              Kebab, burgers, tacos, assiettes et pâtisseries orientales à{" "}
+              {site.city} ({site.zip}), en Vendée.
             </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <CallButton className="btn-brand">
+                <PhoneIcon className="h-[1.125rem] w-[1.125rem]" />
+                {site.phoneDisplay}
+              </CallButton>
+              <a
+                href={site.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-outline-dark"
+              >
+                <WhatsappIcon className="h-[1.125rem] w-[1.125rem]" />
+                WhatsApp
+              </a>
+            </div>
           </div>
 
-          {/* Adresse */}
           <div>
-            <h4 className="mb-3 flex items-center justify-center gap-2 font-display text-sm uppercase tracking-widest text-bone/70 sm:justify-start">
-              <PinIcon className="h-4 w-4 text-red" />
+            <h2 className="text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-bone/35">
               Adresse
-            </h4>
-            <address className="not-italic leading-relaxed text-bone/80">
+            </h2>
+            <address className="mt-4 not-italic leading-relaxed text-bone/70">
               {site.address.street}
               <br />
               {site.address.zip} {site.address.city}
@@ -39,67 +47,55 @@ export default function Footer() {
               href={site.facebookUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-bone/70 transition-colors hover:text-red"
+              className="mt-5 inline-flex items-center gap-2 text-[0.9375rem] text-bone/60 transition-colors hover:text-bone"
             >
               <FacebookIcon className="h-4 w-4" />
-              Suivez-nous sur Facebook
+              Facebook
             </a>
           </div>
 
-          {/* Horaires */}
           <div>
-            <h4 className="mb-3 flex items-center justify-center gap-2 font-display text-sm uppercase tracking-widest text-bone/70 sm:justify-start">
-              <ClockIcon className="h-4 w-4 text-red" />
+            <h2 className="text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-bone/35">
               Horaires
-            </h4>
-            <p className="leading-relaxed text-bone/80">
-              Ouvert 7j/7
+            </h2>
+            <p className="mt-4 leading-relaxed text-bone/70">
+              {hoursSummary}
               <br />
-              Midi &amp; soir
-              <br />
-              <span className="text-sm text-bone/50">
-                Lundi et vendredi : le soir uniquement
-              </span>
+              <span className="text-[0.875rem] text-bone/45">{hoursNote}</span>
             </p>
             <a
-              href="#horaires"
-              className="mt-3 inline-block text-sm font-semibold text-red hover:underline"
+              href="#infos"
+              className="mt-4 inline-block text-[0.9375rem] font-medium text-brand transition-opacity hover:opacity-75"
             >
               Voir le détail
             </a>
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center gap-3 border-t border-coal-line/60 pt-6 text-center text-xs text-bone/40 sm:flex-row sm:justify-between">
+        <div className="mt-14 flex flex-col gap-4 border-t border-char-line pt-7 text-[0.8125rem] text-bone/35 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {new Date().getFullYear()} {site.name} · {site.address.city} (
-            {site.zip}). Tous droits réservés.
+            © {new Date().getFullYear()} {site.name} · {site.address.city} ·
+            Viandes halal
           </p>
-          <nav className="flex items-center gap-4">
-            <Link href="/mentions-legales" className="hover:text-red">
+          <nav className="flex items-center gap-5">
+            <Link href="/mentions-legales" className="transition-colors hover:text-bone/70">
               Mentions légales
             </Link>
-            <Link href="/confidentialite" className="hover:text-red">
+            <Link href="/confidentialite" className="transition-colors hover:text-bone/70">
               Confidentialité
             </Link>
           </nav>
         </div>
 
-        {site.dietary.halal && (
-          <p className="mt-4 text-center text-[11px] text-bone/30">
-            Viandes halal
-          </p>
-        )}
-
         {/* Crédit agence. Lien suivi volontairement (rel sans nofollow) :
             c'est un lien éditorial légitime entre le site livré et son auteur. */}
-        <p className="mt-4 text-center text-[11px] text-bone/40">
+        <p className="mt-5 text-[0.8125rem] text-bone/30">
           Site conçu et réalisé par{" "}
           <a
             href="https://raythan.fr"
             target="_blank"
             rel="noopener"
-            className="font-semibold text-bone/60 underline decoration-red/40 underline-offset-2 transition-colors hover:text-red"
+            className="font-medium text-bone/50 underline decoration-brand/50 underline-offset-4 transition-colors hover:text-brand"
           >
             Raythan Web Design
           </a>

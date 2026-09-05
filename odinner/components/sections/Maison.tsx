@@ -1,73 +1,118 @@
 import Image from "next/image";
-import { photos } from "@/lib/data";
+import { photos, menu } from "@/lib/data";
+import { ArrowIcon } from "@/components/icons";
 
-const points = [
+const signature = menu
+  .find((c) => c.id === "speciaux")!
+  .items.find((i) => i.signature)!;
+
+const proofs = [
   {
-    title: "Préparé à la commande",
-    text: "Rien n'attend sous une lampe : votre kebab, votre pizza ou votre tacos part en cuisine quand vous commandez.",
+    title: "Pain maison",
+    text: "Les burgers et les sandwichs sont montés dans un pain préparé sur place.",
   },
   {
-    title: "Viandes halal",
-    text: "Toutes les viandes servies chez O'dinner sont halal, du kebab au couscous.",
+    title: "Viande hachée fraîche",
+    text: "100 % bœuf pour les burgers, grillée au moment de la commande.",
   },
   {
-    title: "Pâtisseries orientales",
-    text: "Baklava, cornes de gazelle, makrouts : la vitrine sucrée change au fil des jours, à emporter à la pièce ou au plateau.",
-  },
-  {
-    title: "Plus qu'un kebab",
-    text: "Pizzas et couscous à la carte : c'est rare pour un fast-food, et ça change des mêmes menus toute la semaine.",
+    title: "Sauce fromagère maison",
+    text: "Celle des tacos et des bowls est faite ici, pas sortie d'un bidon.",
   },
 ];
 
 export default function Maison() {
   return (
-    <section id="maison" className="border-t border-coal-line/60 py-20">
-      <div className="wrap grid items-center gap-12 lg:grid-cols-2">
-        {/* Photo reelle de la vitrine */}
-        <div className="relative mx-auto w-full max-w-sm lg:max-w-none">
-          <div className="relative aspect-[3/4] overflow-hidden rounded-2xl border border-coal-line/70">
-            <Image
-              src={photos.patisseries}
-              alt="Vitrine de pâtisseries orientales chez O'dinner à Mareuil-sur-Lay-Dissais"
-              fill
-              sizes="(max-width: 1024px) 90vw, 45vw"
-              className="object-cover"
+    <section id="maison" className="grain relative bg-ink py-20 sm:py-24">
+      <div className="wrap relative">
+        <div className="max-w-2xl">
+          <p className="eyebrow text-brand">La maison</p>
+          <h2 className="h2 mt-5 text-balance text-bone">
+            Une signature, et une vitrine sucrée.
+          </h2>
+        </div>
+
+        <div className="mt-12 grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
+          {/* La spécialité qui porte le nom du restaurant */}
+          <div className="relative flex flex-col justify-between overflow-hidden rounded-2xl border border-brand/30 bg-char p-8 sm:p-10">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0"
+              style={{
+                backgroundImage:
+                  "radial-gradient(80% 60% at 100% 0%, rgba(244,0,0,0.18), transparent 60%)",
+              }}
             />
+            <div className="relative">
+              <span className="inline-block rounded-full bg-brand px-3 py-1 text-[0.625rem] font-bold uppercase tracking-[0.16em] text-white">
+                La spécialité
+              </span>
+              <h3 className="mt-6 font-display text-[clamp(2.25rem,5vw,3.5rem)] font-extrabold leading-[0.9] tracking-tightest text-bone">
+                Le sandwich
+                <br />
+                O<span className="text-brand">&apos;</span>dinner
+              </h3>
+              <p className="lede mt-5 max-w-sm text-bone/60">
+                {signature.description}. Celui qui porte le nom de la maison,
+                dans un pain maison ou une tortilla, avec crudités.
+              </p>
+            </div>
+            <div className="relative mt-10 flex items-end justify-between gap-6">
+              <span className="font-display text-[clamp(3rem,9vw,5rem)] font-extrabold leading-none tracking-tightest text-brand">
+                {signature.price}
+              </span>
+              <a
+                href="#cat-speciaux"
+                className="inline-flex items-center gap-2 pb-2 text-[0.9375rem] font-medium text-bone/70 transition-colors hover:text-bone"
+              >
+                Les autres spéciaux
+                <ArrowIcon className="h-4 w-4" />
+              </a>
+            </div>
           </div>
-          <div className="absolute -bottom-4 -right-4 rotate-3 rounded-xl border-2 border-ink bg-red px-4 py-2 text-center shadow-plate">
-            <span className="block font-display text-lg uppercase leading-none tracking-wide text-bone">
-              La vitrine
-            </span>
-            <span className="mt-1 block text-[11px] font-bold uppercase tracking-wide text-bone/85">
-              Pâtisseries orientales
-            </span>
+
+          {/* La vitrine de pâtisseries, photo réelle de l'établissement */}
+          <div className="relative overflow-hidden rounded-2xl border border-char-line">
+            <div className="relative aspect-[4/5] sm:aspect-[16/11] lg:aspect-auto lg:h-full lg:min-h-[26rem]">
+              <Image
+                src={photos.patisseries}
+                alt="Vitrine réfrigérée de pâtisseries orientales chez O'dinner : baklava, cornes de gazelle et makrouts"
+                fill
+                sizes="(max-width: 1024px) 100vw, 45vw"
+                className="object-cover"
+              />
+              {/* Voile assez dense au pied de l'image : la vitrine est très
+                  chargée, le texte doit rester lisible par-dessus. */}
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 bg-gradient-to-t from-ink via-ink/75 via-40% to-transparent"
+              />
+            </div>
+            <div className="absolute inset-x-0 bottom-0 p-8 sm:p-10">
+              <h3 className="font-display text-[1.75rem] font-extrabold leading-none tracking-tightest text-bone">
+                La vitrine à pâtisseries
+              </h3>
+              <p className="mt-3 max-w-sm text-[0.9375rem] leading-relaxed text-bone/70">
+                Baklava, cornes de gazelle, makrouts : la vitrine change au fil
+                des jours. À la pièce, dès 2&nbsp;€.
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* Texte */}
-        <div>
-          <p className="kicker">
-            <span className="h-px w-8 bg-red" /> La différence O&apos;dinner
-          </p>
-          <h2 className="h-section">Du salé, du sucré, du vrai</h2>
-          <ul className="mt-6 space-y-5">
-            {points.map((p) => (
-              <li key={p.title} className="flex gap-4">
-                <span
-                  aria-hidden="true"
-                  className="mt-1.5 h-2.5 w-2.5 shrink-0 rotate-45 bg-red"
-                />
-                <div>
-                  <h3 className="font-display text-xl uppercase tracking-wide text-bone">
-                    {p.title}
-                  </h3>
-                  <p className="mt-1 text-bone/70">{p.text}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <ul className="mt-4 grid gap-4 sm:grid-cols-3">
+          {proofs.map((p) => (
+            <li
+              key={p.title}
+              className="rounded-2xl border border-char-line bg-char-soft p-6"
+            >
+              <h3 className="h3 text-bone">{p.title}</h3>
+              <p className="mt-2 text-[0.9375rem] leading-relaxed text-bone/55">
+                {p.text}
+              </p>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

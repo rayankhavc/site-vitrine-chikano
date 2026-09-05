@@ -1,56 +1,73 @@
 # O'dinner — site vitrine
 
-Site vitrine du restaurant **O'dinner**, 51 Rue Hervé de Mareuil, 85320
-Mareuil-sur-Lay-Dissais (Vendée). Même socle technique que le site Chikano :
-Next.js 14 (App Router) + Tailwind CSS + Framer Motion, déployé sur Vercel.
-
-## Démarrer
+Restaurant **O'dinner**, 51 Rue Hervé de Mareuil, 85320 Mareuil-sur-Lay-Dissais
+(Vendée). Next.js 14 (App Router), Tailwind CSS, aucune dépendance runtime
+au-delà de React. Déployé sur Vercel.
 
 ```bash
 npm install
 npm run dev     # http://localhost:3000
-npm run build   # build de production
+npm run build
 ```
+
+## Ce que le site fait
+
+- **Carte complète avec les prix**, relevée sur les quatre panneaux du
+  restaurant : 14 catégories, viandes au choix, sauces, suppléments, formules.
+- **Les panneaux en photo**, en pleine résolution, dans une visionneuse
+  (clavier : `←` `→` `Échap`).
+- **Statut « Ouvert / Fermé » en direct**, calculé à l'heure de Paris, avec
+  l'heure de fermeture ou de prochaine ouverture, et le jour du jour mis en
+  avant dans le tableau des horaires.
+- **Avis Google réels** (4,9/5 · 76 avis), repris sans modification.
+- **Barre d'actions fixe sur mobile** : appeler, WhatsApp, itinéraire.
 
 ## Où modifier le contenu
 
-Tout le contenu éditorial est centralisé dans **`lib/data.ts`** :
+Tout est dans **`lib/data.ts`** :
 
-| À changer | Où |
+| À changer | Clé |
 | --- | --- |
-| Nom de domaine | `site.url` (une seule ligne : SEO, sitemap, robots et données structurées suivent) |
-| Téléphone, adresse, GPS | `site.phoneDisplay` / `site.address` / `site.geo` |
-| Horaires | `openingHours` (plusieurs créneaux par jour possibles, `slots: []` = fermé) |
-| Carte et prix | `menu` — remplir le tableau `items` d'une catégorie |
-| Avis clients | `reviews` — volontairement vide, aucun avis n'est inventé |
-| Communes ciblées (SEO local) | `site.areaServed` |
-| FAQ | `faq` (alimente aussi le bloc FAQPage de Google) |
+| Nom de domaine | `site.url` — une seule ligne : SEO, canonique, sitemap, robots, JSON-LD et `llms.txt` suivent |
+| Téléphone, adresse, GPS | `site.phoneDisplay`, `site.address`, `site.geo` |
+| Horaires | `openingHours` — plusieurs créneaux par jour, `slots: []` = fermé |
+| Carte et prix | `menu` (+ `viandes`, `sauces`, `supplements`, `extras`) |
+| Avis et note | `reviews`, `rating` |
+| Communes ciblées | `site.areaServed` |
+| FAQ | `faq` — alimente aussi le bloc FAQPage de Google |
 
-Les visuels sont dans `public/photos/` : `logo.png` (logo de la fiche Google,
-fond détouré) et `patisseries-orientales.jpg`.
+Photos dans `public/photos/` : `logo.png` (logo détouré de la fiche Google),
+`patisseries-orientales.jpg`, et les quatre panneaux `carte-*.jpg`.
 
-## SEO / GEO déjà en place
+## SEO / GEO
 
-- Métadonnées complètes (title < 60 car., description < 160 car., canonique,
-  Open Graph, Twitter Card, balises `geo.*` / ICBM).
-- Données structurées `Restaurant` (adresse, GPS, horaires par créneau,
-  `hasMenu` par catégories, zone desservie) et `FAQPage`.
+- Title < 60 caractères, description < 160, canonique, Open Graph, Twitter
+  Card, balises `geo.*` / ICBM.
+- JSON-LD `Restaurant` : adresse, GPS, horaires **par créneau**, zone
+  desservie, et `hasMenu` complet — chaque article avec son prix.
+- JSON-LD `FAQPage` sur les 8 questions de la page.
 - `robots.txt`, `sitemap.xml`, `manifest.webmanifest`, favicon, icône Apple et
   image Open Graph générés par le framework.
-- `/llms.txt` : résumé factuel en texte brut pour les moteurs de réponse (IA).
-- Images servies en AVIF/WebP, aucun script tiers, carte Google chargée
-  seulement au clic (pas de cookie tiers → pas de bandeau cookies).
+- `/llms.txt` : fiche factuelle en texte brut (carte et prix compris) pour les
+  moteurs de réponse.
+- Images AVIF/WebP, aucun script tiers, carte Google chargée seulement au clic
+  → pas de cookie tiers, donc pas de bandeau cookies.
+
+> La note et les avis sont affichés sur la page mais volontairement **absents**
+> du balisage `schema.org`. Google considère comme auto-promotionnel un
+> `aggregateRating` qu'un site publie sur lui-même et peut retirer l'extrait
+> enrichi correspondant. La fiche Google fait foi.
 
 ## À activer à la livraison du domaine
 
-Dans Vercel → Settings → Environment Variables, puis redéployer :
+Vercel → Settings → Environment Variables, puis redéployer :
 
 | Variable | Effet |
 | --- | --- |
-| `NEXT_PUBLIC_GA_ID` | active Google Analytics 4 (`G-XXXXXXXXXX`) |
-| `GOOGLE_SITE_VERIFICATION` | ajoute la balise de vérification Search Console |
+| `NEXT_PUBLIC_GA_ID` | branche Google Analytics 4 (`G-XXXXXXXXXX`) |
+| `GOOGLE_SITE_VERIFICATION` | balise de vérification Search Console |
 
-Tant que ces variables sont absentes, aucun script tiers n'est chargé.
+Tant qu'elles sont absentes, aucun script tiers n'est chargé.
 
 ---
 

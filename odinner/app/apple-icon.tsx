@@ -1,6 +1,5 @@
 import { ImageResponse } from "next/og";
 
-// Runtime edge : la generation statique de @vercel/og echoue sous Windows.
 export const runtime = "edge";
 export const size = { width: 180, height: 180 };
 export const contentType = "image/png";
@@ -15,19 +14,20 @@ export default function AppleIcon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "#08090A",
+          backgroundColor: "#0B0B0D",
+          fontFamily: "sans-serif",
         }}
       >
         <div
           style={{
-            fontSize: 110,
-            fontWeight: 900,
-            fontStyle: "italic",
-            fontFamily: "serif",
-            color: "#F40000",
+            fontSize: 104,
+            fontWeight: 800,
+            letterSpacing: -6,
+            color: "#F5F3F0",
+            display: "flex",
           }}
         >
-          O
+          O<span style={{ color: "#F40000" }}>&apos;</span>
         </div>
       </div>
     ),

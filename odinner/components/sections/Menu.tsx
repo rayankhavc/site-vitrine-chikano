@@ -1,90 +1,171 @@
-import { menu, menuHasPrices, site } from "@/lib/data";
-import { PhoneIcon } from "@/components/icons";
-import PhoneLink from "@/components/PhoneLink";
+import {
+  menu,
+  viandes,
+  sauces,
+  supplements,
+  extras,
+  site,
+} from "@/lib/data";
+import { LeafIcon, PhoneIcon } from "@/components/icons";
+import MenuNav from "@/components/MenuNav";
+import CallButton from "@/components/CallButton";
 
 export default function Menu() {
   return (
-    <section id="carte" className="border-t border-coal-line/60 bg-coal py-20">
-      <div className="wrap">
-        <div className="mb-10 text-center">
-          <p className="kicker justify-center">La carte</p>
-          <h2 className="h-section">Faim ? On s&apos;occupe de tout</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-bone/70">
-            Kebabs, pizzas, tacos, burgers, couscous, paninis et pâtisseries
-            orientales : tout est préparé à la commande, sur place ou à
-            emporter.
+    <section
+      id="carte"
+      className="on-paper bg-paper text-ink"
+    >
+      <div className="wrap pt-20 sm:pt-24">
+        <div className="max-w-2xl">
+          <p className="eyebrow text-brand-ink">La carte</p>
+          <h2 className="h2 mt-5 text-balance">
+            Toute la carte, prix compris.
+          </h2>
+          <p className="lede mt-5 text-pretty text-ink/60">
+            Relevée sur les panneaux du restaurant. Sandwichs et assiettes sont
+            servis avec crudités et frites, les burgers avec un pain maison et
+            une viande hachée fraîche.
           </p>
         </div>
+      </div>
 
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {menu.map((category, i) => (
-            <div key={category.id} className="plate min-w-0 p-6">
-              <span
-                aria-hidden="true"
-                className="font-display text-sm tracking-[0.2em] text-red"
-              >
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <h3 className="mt-1 font-display text-2xl uppercase tracking-wide text-bone">
-                {category.title}
-              </h3>
-              <span
-                aria-hidden="true"
-                className="mt-3 block h-0.5 w-10 bg-red"
-              />
-              <p className="mt-3 text-sm leading-relaxed text-bone/65">
-                {category.note}
-              </p>
+      <div className="wrap mt-10">
+        <MenuNav items={menu.map((c) => ({ id: c.id, short: c.short }))} />
 
-              {category.items && category.items.length > 0 ? (
-                <ul className="mt-5 space-y-3.5 border-t border-coal-line/60 pt-5">
-                  {category.items.map((item) => (
-                    <li key={item.name} className="flex items-start gap-3">
-                      <div className="min-w-0 flex-1">
-                        <span className="font-semibold text-bone">
-                          {item.name}
-                        </span>
-                        {item.description ? (
-                          <p className="text-sm text-bone/55">
-                            {item.description}
-                          </p>
+        <div className="divide-y divide-paper-line">
+          {menu.map((category) => (
+            <div
+              key={category.id}
+              id={`cat-${category.id}`}
+              className="scroll-mt-[8.5rem] py-10 sm:py-12"
+            >
+              <div className="mb-7 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+                <h3 className="font-display text-[1.75rem] font-extrabold leading-none tracking-tightest">
+                  {category.title}
+                </h3>
+                {category.note ? (
+                  <p className="text-[0.8125rem] text-ink/45">{category.note}</p>
+                ) : null}
+              </div>
+
+              <ul className="grid gap-x-14 gap-y-5 md:grid-cols-2">
+                {category.items.map((item) => (
+                  <li key={item.name}>
+                    <div className="flex items-baseline justify-between gap-2 sm:justify-start">
+                      <span
+                        className={`font-semibold ${
+                          item.signature ? "text-brand-ink" : ""
+                        }`}
+                      >
+                        {item.name}
+                        {item.veggie ? (
+                          <LeafIcon
+                            className="ml-1.5 inline h-3.5 w-3.5 -translate-y-px text-emerald-600"
+                            aria-label="végétarien"
+                          />
                         ) : null}
-                      </div>
-                      <span className="price-pill">{item.price}</span>
-                    </li>
-                  ))}
-                </ul>
-              ) : null}
+                        {item.signature ? (
+                          <span className="ml-2 rounded-full bg-brand px-2 py-0.5 align-middle text-[0.625rem] font-bold uppercase tracking-wider text-white">
+                            La maison
+                          </span>
+                        ) : null}
+                      </span>
+                      <span className="leader" aria-hidden="true" />
+                      <span className="shrink-0 font-semibold tabular-nums">
+                        {item.price}
+                      </span>
+                    </div>
+                    {item.description ? (
+                      <p className="mt-1 max-w-md text-sm leading-relaxed text-ink/50">
+                        {item.description}
+                      </p>
+                    ) : null}
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>
+      </div>
 
-        {/* Tant que le detail des prix n'est pas publie par le restaurant,
-            on assume : on envoie vers le telephone plutot que d'afficher
-            des tarifs approximatifs. */}
-        {!menuHasPrices ? (
-          <div className="mx-auto mt-12 max-w-2xl rounded-xl border-2 border-red/40 bg-coal-card p-6 text-center ring-red-soft">
-            <h3 className="font-display text-2xl uppercase tracking-wide text-bone">
-              Carte complète & tarifs
-            </h3>
-            <p className="mx-auto mt-2 max-w-md text-sm text-bone/65">
-              La carte évolue régulièrement. Pour connaître les prix du jour ou
-              commander, un appel suffit — on vous répond directement.
-            </p>
-            <PhoneLink className="btn-red mt-5 w-full sm:w-auto">
-              <PhoneIcon className="h-5 w-5" />
-              {site.phoneDisplay}
-            </PhoneLink>
-          </div>
-        ) : (
-          <p className="mt-10 text-center text-sm text-bone/60">
-            Une envie, une question ? Appelez le{" "}
-            <PhoneLink className="font-semibold text-red hover:underline">
-              {site.phoneDisplay}
-            </PhoneLink>{" "}
-            pour commander.
+      {/* Choix et suppléments : la partie "configuration" de la carte */}
+      <div className="wrap grid gap-4 border-t border-paper-line py-12 md:grid-cols-3">
+        <div className="rounded-2xl bg-paper-soft p-6">
+          <h3 className="h3">Les viandes au choix</h3>
+          <p className="mt-1 text-[0.8125rem] text-ink/45">
+            Tacos, maxis, assiettes et bowls · viande en plus {extras[3].price}
           </p>
-        )}
+          <ul className="mt-4 flex flex-wrap gap-1.5">
+            {viandes.map((v) => (
+              <li
+                key={v}
+                className="rounded-full bg-white px-2.5 py-1 text-[0.8125rem] text-ink/70 ring-1 ring-paper-line"
+              >
+                {v}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="rounded-2xl bg-paper-soft p-6">
+          <h3 className="h3">Les sauces</h3>
+          <p className="mt-1 text-[0.8125rem] text-ink/45">Au choix, sans supplément</p>
+          <ul className="mt-4 flex flex-wrap gap-1.5">
+            {sauces.map((s) => (
+              <li
+                key={s}
+                className="rounded-full bg-white px-2.5 py-1 text-[0.8125rem] text-ink/70 ring-1 ring-paper-line"
+              >
+                {s}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="rounded-2xl bg-paper-soft p-6">
+          <h3 className="h3">Suppléments & formules</h3>
+          <dl className="mt-4 space-y-3">
+            {supplements.map((group) => (
+              <div key={group.price}>
+                <dt className="text-[0.8125rem] font-semibold text-brand-ink">
+                  {group.price}
+                </dt>
+                <dd className="text-[0.8125rem] leading-relaxed text-ink/60">
+                  {group.items.join(", ")}
+                </dd>
+              </div>
+            ))}
+          </dl>
+          <ul className="mt-4 space-y-1.5 border-t border-paper-line pt-4">
+            {extras.slice(0, 3).map((e) => (
+              <li
+                key={e.label}
+                className="flex items-baseline justify-between gap-3 text-[0.8125rem]"
+              >
+                <span className="text-ink/60">{e.label}</span>
+                <span className="font-semibold tabular-nums">{e.price}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <div className="wrap pb-20 sm:pb-24">
+        <div className="flex flex-col items-center gap-5 rounded-2xl bg-ink px-6 py-9 text-center sm:flex-row sm:justify-between sm:text-left">
+          <div>
+            <p className="font-display text-[1.5rem] font-extrabold leading-none tracking-tightest text-bone">
+              Les commandes se prennent par téléphone.
+            </p>
+            <p className="mt-2 text-[0.9375rem] text-bone/55">
+              On prépare, vous passez récupérer. Ou vous mangez sur place.
+            </p>
+          </div>
+          <CallButton className="btn-brand shrink-0">
+            <PhoneIcon className="h-[1.125rem] w-[1.125rem]" />
+            {site.phoneDisplay}
+          </CallButton>
+        </div>
       </div>
     </section>
   );

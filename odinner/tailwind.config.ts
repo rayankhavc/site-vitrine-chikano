@@ -1,50 +1,58 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  content: [
-    "./app/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./lib/**/*.{ts,tsx}",
-  ],
+  content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./lib/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
-        // Palette reelle O'dinner, relevee pixel par pixel sur le logo de la
-        // fiche Google : noir pur + rouge vif + blanc. Rien d'autre.
-        ink: "#08090A", // fond le plus profond
-        coal: {
-          DEFAULT: "#0E1012", // panneau sombre
-          soft: "#141719",
-          card: "#1A1E21",
-          line: "#2B3034",
+        // Rouge exact releve sur le logo de l'enseigne (#F40000) : c'est la
+        // seule couleur de marque. Le reste est une echelle neutre chaude,
+        // pensee pour alterner surfaces sombres et surfaces "papier".
+        brand: {
+          DEFAULT: "#F40000",
+          bright: "#FF2A1F",
+          // variante assombrie, seule a passer le contraste AA sur le papier
+          ink: "#C20D10",
         },
-        red: {
-          DEFAULT: "#F40000", // rouge exact du logo
-          bright: "#FF2E22",
-          deep: "#B00000",
+        ink: "#0B0B0D",
+        char: {
+          DEFAULT: "#131418",
+          soft: "#191B20",
+          line: "#282A31",
         },
-        // Orange chaud utilise uniquement en degrade (bandeau, halos) pour
-        // rechauffer le rouge sans introduire une seconde couleur de marque.
-        flame: "#FF6A00",
-        bone: "#F6F6F7", // blanc casse du logo
+        paper: {
+          DEFAULT: "#F7F3EC",
+          soft: "#EFE9DE",
+          line: "#DED5C6",
+        },
+        bone: "#F5F3F0",
       },
       fontFamily: {
-        display: ["var(--font-anton)", "Impact", "sans-serif"],
-        script: ["var(--font-kaushan)", "cursive"],
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        display: ["var(--font-display)", "Impact", "sans-serif"],
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+      },
+      letterSpacing: {
+        tightest: "-0.045em",
       },
       boxShadow: {
-        plate: "0 18px 40px -18px rgba(0,0,0,0.8)",
-        red: "0 10px 30px -10px rgba(244,0,0,0.5)",
+        lift: "0 24px 60px -28px rgba(0,0,0,0.65)",
+        card: "0 2px 0 0 rgba(0,0,0,0.04), 0 18px 40px -30px rgba(0,0,0,0.35)",
       },
       keyframes: {
-        marquee: {
-          from: { transform: "translateX(0)" },
-          to: { transform: "translateX(-50%)" },
+        marquee: { from: { transform: "translateX(0)" }, to: { transform: "translateX(-50%)" } },
+        rise: {
+          from: { opacity: "0", transform: "translateY(14px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
+        pulseDot: {
+          "0%,100%": { opacity: "1" },
+          "50%": { opacity: "0.35" },
         },
       },
       animation: {
-        marquee: "marquee 28s linear infinite",
+        marquee: "marquee 32s linear infinite",
+        rise: "rise 0.6s cubic-bezier(0.16,1,0.3,1) both",
+        pulseDot: "pulseDot 2s ease-in-out infinite",
       },
     },
   },

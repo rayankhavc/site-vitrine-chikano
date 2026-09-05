@@ -1,16 +1,12 @@
 import Script from "next/script";
 
 /**
- * Google Analytics 4 (gtag.js).
+ * Google Analytics 4, inerte par défaut.
  *
- * Volontairement inactif tant que la variable d'environnement
- * NEXT_PUBLIC_GA_ID n'est pas renseignee : la mesure d'audience et la
- * Search Console sont mises en place a la livraison du nom de domaine.
- * Pour l'activer : Vercel > Settings > Environment Variables >
- * NEXT_PUBLIC_GA_ID = G-XXXXXXXXXX, puis redeployer.
- *
- * Tant qu'aucun ID n'est defini, aucun script tiers n'est charge et
- * aucun cookie de mesure n'est depose : pas de bandeau cookies requis.
+ * Rien n'est chargé tant que NEXT_PUBLIC_GA_ID n'est pas renseignée : aucun
+ * script tiers, aucun cookie de mesure, donc pas de bandeau cookies requis.
+ * Pour activer : Vercel → Settings → Environment Variables →
+ * NEXT_PUBLIC_GA_ID = G-XXXXXXXXXX, puis redéployer.
  */
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 

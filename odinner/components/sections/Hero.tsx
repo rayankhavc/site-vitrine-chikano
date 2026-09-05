@@ -1,167 +1,147 @@
-"use client";
-
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { site, photos } from "@/lib/data";
-import { PhoneIcon } from "@/components/icons";
-import Stars from "@/components/Stars";
-import PhoneLink from "@/components/PhoneLink";
+import { site, photos, rating, boards } from "@/lib/data";
+import { PhoneIcon, StarIcon, WhatsappIcon } from "@/components/icons";
+import CallButton from "@/components/CallButton";
+import StatusPill from "@/components/StatusPill";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 22 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, delay: i * 0.1, ease: "easeOut" },
-  }),
-};
-
-const chips = ["Viandes halal", "Sur place & à emporter", "Ouvert 7j/7"];
+const facts = [
+  "Viandes halal",
+  "Options végétariennes",
+  "Sur place & à emporter",
+  "Parking gratuit",
+];
 
 export default function Hero() {
   return (
-    <section id="accueil" className="relative overflow-hidden pt-16">
+    <section id="haut" className="grain relative overflow-hidden bg-ink pt-[4.5rem]">
+      {/* Halo rouge : la seule couleur de marque, posée comme une lumière */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
         style={{
           backgroundImage:
-            "radial-gradient(ellipse 60% 40% at 15% 12%, rgba(244,0,0,0.22), transparent 62%), radial-gradient(ellipse 55% 45% at 88% 8%, rgba(255,106,0,0.14), transparent 60%), radial-gradient(ellipse 70% 45% at 50% 100%, rgba(244,0,0,0.12), transparent 62%)",
+            "radial-gradient(70% 55% at 78% 18%, rgba(244,0,0,0.22), transparent 62%), radial-gradient(55% 45% at 8% 4%, rgba(244,0,0,0.10), transparent 60%)",
         }}
       />
 
-      <div className="wrap relative grid items-center gap-12 py-14 lg:grid-cols-[1.05fr_0.95fr] lg:py-20">
-        {/* Colonne texte */}
-        <div>
-          <motion.p
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            custom={0}
-            className="kicker"
-          >
-            <span className="h-px w-8 bg-gradient-to-r from-red-deep via-red to-flame" />{" "}
-            {site.city} · Vendée ({site.zip})
-          </motion.p>
+      <div className="wrap relative">
+        <div className="grid items-center gap-14 pb-14 pt-14 lg:grid-cols-[1.28fr_0.72fr] lg:gap-10 lg:pb-20 lg:pt-20">
+          <div className="animate-rise">
+            <p className="eyebrow text-brand">
+              {site.shortCity} · Vendée {site.zip}
+            </p>
 
-          <motion.h1
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            custom={1}
-            className="mt-2"
-          >
-            <span className="block font-script text-5xl leading-none text-red sm:text-6xl">
-              O&apos;dinner
-            </span>
-            <span className="mt-3 block font-display text-4xl uppercase leading-[0.95] tracking-wide text-bone sm:text-5xl">
-              Kebab · Pizza · Tacos
-              <span className="block text-bone/70">à Mareuil-sur-Lay</span>
-            </span>
-          </motion.h1>
+            {/* Traits d'union insécables : le nom de la commune ne doit
+                jamais se couper en fin de ligne. */}
+            <h1 className="h1 mt-6">
+              <span className="block">Kebab, burger, tacos</span>
+              <span className="block text-brand">à Mareuil&#8209;sur&#8209;Lay</span>
+            </h1>
 
-          <motion.p
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            custom={2}
-            className="mt-5 max-w-md text-lg text-bone/75"
-          >
-            Le fast-food du bourg, préparé{" "}
-            <strong className="text-bone">à la commande</strong> : kebabs,
-            pizzas, tacos, burgers, couscous — et une vraie vitrine de
-            pâtisseries orientales.
-          </motion.p>
+            <p className="lede mt-7 max-w-xl text-pretty text-bone/65">
+              Pain maison, viande hachée fraîche 100&nbsp;% bœuf, sauce fromagère
+              maison. Tout part en cuisine au moment où vous commandez — sur
+              place ou à emporter, 7&nbsp;j/7.
+            </p>
 
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            custom={3}
-            className="mt-6 flex flex-wrap gap-2"
-          >
-            {chips.map((chip) => (
-              <span
-                key={chip}
-                className="rounded-full border border-coal-line bg-coal-soft px-3 py-1.5 text-sm font-semibold text-bone/80"
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <StatusPill />
+              <a
+                href="#avis"
+                className="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1.5 text-[0.8125rem] text-bone/70 transition-colors hover:text-bone"
               >
-                {chip}
-              </span>
-            ))}
-          </motion.div>
+                <StarIcon className="h-3.5 w-3.5 text-brand" />
+                <span className="font-semibold text-bone">{rating.value}/5</span>
+                <span className="opacity-70">· {rating.count} avis Google</span>
+              </a>
+            </div>
 
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            custom={4}
-            className="mt-8 flex flex-col gap-3 sm:flex-row"
-          >
-            <PhoneLink className="btn-red w-full sm:w-auto">
-              <PhoneIcon className="h-5 w-5" />
-              Appeler maintenant
-            </PhoneLink>
-            <a href="#carte" className="btn-ghost w-full sm:w-auto">
-              Voir la carte
-            </a>
-          </motion.div>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <CallButton className="btn-brand w-full sm:w-auto">
+                <PhoneIcon className="h-[1.125rem] w-[1.125rem]" />
+                {site.phoneDisplay}
+              </CallButton>
+              <a href="#carte" className="btn-outline-dark w-full sm:w-auto">
+                Voir la carte et les prix
+              </a>
+              <a
+                href={site.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-outline-dark w-full sm:w-auto"
+              >
+                <WhatsappIcon className="h-[1.125rem] w-[1.125rem]" />
+                WhatsApp
+              </a>
+            </div>
 
-          <motion.a
-            href={site.googleReviewsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            custom={5}
-            className="mt-6 inline-flex items-center gap-2 text-sm text-bone/70 transition-colors hover:text-red"
-          >
-            <Stars />
-            <span>Nos avis clients sur Google</span>
-          </motion.a>
-        </div>
+            <ul className="mt-9 flex flex-wrap gap-x-6 gap-y-2 text-[0.8125rem] text-bone/45">
+              {facts.map((f) => (
+                <li key={f} className="flex items-center gap-2">
+                  <span
+                    aria-hidden="true"
+                    className="h-1 w-1 rounded-full bg-brand"
+                  />
+                  {f}
+                </li>
+              ))}
+            </ul>
+          </div>
 
-        {/* Colonne visuelle : le logo reel de l'enseigne */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="relative mx-auto w-full max-w-sm lg:max-w-none"
-        >
-          <div className="relative overflow-hidden rounded-2xl border-2 border-red/40 bg-coal">
+          {/* Emblème réel de l'enseigne, posé sans cadre */}
+          <div className="relative mx-auto w-full max-w-[26rem] lg:max-w-none">
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute inset-0"
+              className="absolute left-1/2 top-1/2 h-[86%] w-[86%] -translate-x-1/2 -translate-y-1/2 rounded-full"
               style={{
-                backgroundImage:
-                  "radial-gradient(circle at 50% 45%, rgba(244,0,0,0.22), transparent 65%)",
+                background:
+                  "radial-gradient(circle, rgba(244,0,0,0.28), transparent 68%)",
               }}
             />
-            <div className="relative flex aspect-square items-center justify-center p-10">
-              <div className="relative h-full w-full">
-                <Image
-                  src={photos.logo}
-                  alt="Logo O'dinner — pizza, fast food à Mareuil-sur-Lay-Dissais"
-                  fill
-                  priority
-                  sizes="(max-width: 1024px) 80vw, 40vw"
-                  className="object-contain"
-                />
-              </div>
+            <div className="relative aspect-square">
+              <Image
+                src={photos.logo}
+                alt="Logo O'dinner — pizza, fast food"
+                fill
+                priority
+                sizes="(max-width: 1024px) 70vw, 34vw"
+                className="object-contain drop-shadow-[0_20px_60px_rgba(244,0,0,0.25)]"
+              />
             </div>
-            <p className="relative border-t border-coal-line/70 bg-ink/60 px-5 py-3 text-center text-xs font-bold uppercase tracking-[0.2em] text-bone/60">
-              Pizza · Fast food · Halal
-            </p>
           </div>
+        </div>
+      </div>
 
-          {/* Sticker facon autocollant de vitrine */}
-          <div className="absolute -bottom-4 -left-4 -rotate-6 rounded-xl border-2 border-ink bg-red px-4 py-2 text-center shadow-plate">
-            <span className="block text-xl leading-none text-bone">★★★★★</span>
-            <span className="mt-1 block text-[11px] font-bold uppercase tracking-wide text-bone/85">
-              Avis Google
-            </span>
-          </div>
-        </motion.div>
+      {/* Aperçu des panneaux réels du restaurant, en rail */}
+      <div className="relative border-t border-white/[0.07] py-6">
+        <div className="wrap mb-4 flex items-baseline justify-between gap-4">
+          <p className="text-[0.8125rem] text-bone/40">
+            Les panneaux du restaurant, en entier
+          </p>
+          <a
+            href="#panneaux"
+            className="text-[0.8125rem] font-medium text-brand transition-opacity hover:opacity-75"
+          >
+            Tout voir
+          </a>
+        </div>
+        <div className="fade-x no-scrollbar flex snap-x gap-3 overflow-x-auto px-5 pb-1 sm:px-8">
+          {boards.map((b) => (
+            <a
+              key={b.src}
+              href="#panneaux"
+              className="relative aspect-[16/9] w-[15rem] shrink-0 snap-start overflow-hidden rounded-lg ring-1 ring-white/10 transition duration-300 hover:ring-brand/50 sm:w-[19rem]"
+            >
+              <Image
+                src={b.src}
+                alt=""
+                fill
+                sizes="19rem"
+                className="object-cover"
+              />
+            </a>
+          ))}
+        </div>
       </div>
     </section>
   );
