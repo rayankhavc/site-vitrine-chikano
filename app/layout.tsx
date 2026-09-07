@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Anton } from "next/font/google";
 import { site, reviews, openingHoursSchema, faq } from "@/lib/data";
 import Analytics from "@/components/Analytics";
+import Consent from "@/components/Consent";
 import "./globals.css";
 
 const anton = Anton({
@@ -152,6 +153,7 @@ export default function RootLayout({
         />
         {children}
         <Analytics />
+        <Consent />
       </body>
     </html>
   );

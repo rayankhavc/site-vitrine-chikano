@@ -26,24 +26,50 @@ export default function Confidentialite() {
           </h2>
           <p className="mt-2 leading-relaxed">
             Ce site est un site vitrine. Il ne propose pas de formulaire de
-            contact, de compte client ni de paiement en ligne : aucune donnée
-            personnelle n&apos;est demandée ni enregistrée par le site.
-            Lorsque vous appelez le {site.phoneDisplay}, l&apos;échange se fait
-            directement par téléphone, hors du site.
+            contact, de compte client ni de paiement en ligne :{" "}
+            <strong>
+              aucune donnée personnelle ne vous est demandée pour le consulter
+            </strong>
+            . Lorsque vous appelez le {site.phoneDisplay}, l&apos;échange se
+            fait directement par téléphone, hors du site. La seule collecte
+            possible est celle de la mesure d&apos;audience décrite plus bas,
+            qui n&apos;a lieu que si vous l&apos;acceptez.
           </p>
         </section>
 
-        <section>
+        <section id="cookies" className="scroll-mt-24">
           <h2 className="font-display text-xl uppercase tracking-wide text-gold">
-            Cookies
+            Cookies et mesure d&apos;audience
           </h2>
           <p className="mt-2 leading-relaxed">
-            Le site ne dépose aucun cookie publicitaire ni de mesure
-            d&apos;audience. La carte Google Maps n&apos;est chargée que si vous
-            cliquez sur « Afficher la carte » : ce n&apos;est qu&apos;à ce
-            moment, et avec votre action, que Google peut déposer ses propres
-            cookies. Tant que vous ne cliquez pas, aucun cookie tiers
-            n&apos;est déposé.
+            Ce site utilise <strong>Google Analytics 4</strong> pour compter les
+            visites et savoir quelles pages sont consultées. Cela nous sert à
+            savoir si le site est utile, et à rien d&apos;autre : nous ne
+            consultons que des statistiques agrégées, nous ne cherchons pas à
+            savoir qui vous êtes, et nous ne recoupons ces données avec aucune
+            autre source.
+          </p>
+          <p className="mt-3 leading-relaxed">
+            Cette mesure dépose un cookie sur votre appareil, et{" "}
+            <strong>
+              rien n&apos;est déposé tant que vous n&apos;avez pas accepté
+            </strong>{" "}
+            : le bandeau s&apos;affiche à votre première visite, et le refus est
+            mémorisé aussi longtemps que l&apos;acceptation. Le site fonctionne
+            exactement de la même manière dans les deux cas. Vous pouvez revenir
+            sur votre choix à tout moment par le lien « Cookies » du pied de
+            page.
+          </p>
+          <p className="mt-3 leading-relaxed">
+            Les données sont traitées par Google, ce qui peut impliquer un
+            transfert hors de l&apos;Union européenne. Elles sont conservées
+            quatorze mois, puis supprimées.
+          </p>
+          <p className="mt-3 leading-relaxed">
+            Aucun cookie publicitaire n&apos;est déposé. La carte Google Maps
+            n&apos;est chargée que si vous cliquez sur « Afficher la carte » :
+            ce n&apos;est qu&apos;à ce moment, et avec votre action, que Google
+            peut déposer ses propres cookies.
           </p>
         </section>
 
